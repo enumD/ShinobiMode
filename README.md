@@ -116,4 +116,8 @@ Now you build the files using "make" command and install it using "make install"
 Installation is over. All files are installed in "/usr/local/" folder. Open a terminal and try import "cv2".  
 
 import cv2 as cv  
->> print(cv.__version__)  
+>> print(cv.__version__)
+
+I installed from apt repository and i got the 4.8.0 version.  
+
+
