@@ -13,7 +13,7 @@ Where to Buy: Amazon, AliExpress, or online electronics stores.
 
 $ 3 euro each
 
-## 2. AM312  ![Sensor specs](https://github.com/enumD/PeopleRecognition/blob/main/picture/RCWL_0516_specs_02.png)  
+## 2. AM312 
 Main Features:
 
 A miniaturized PIR sensor compared to other models.
