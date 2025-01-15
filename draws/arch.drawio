@@ -319,6 +319,9 @@
         <mxCell id="XIHXmzrnx7aPzLWd52Pc-131" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Warning Mode&lt;/h1&gt;&lt;div&gt;- Play a voice message &quot;Presence revelead near the camper, please stay back&quot;&lt;/div&gt;&lt;div&gt;- Turn some light red to make effect&lt;/div&gt;&lt;div&gt;- Record the scene&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="335" y="-740" width="335" height="140" as="geometry" />
         </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-132" value="Async Queue&lt;div&gt;shared&lt;/div&gt;" style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;backgroundOutline=1;size=15;" vertex="1" parent="1">
+          <mxGeometry x="-119.68" y="-1230" width="60" height="80" as="geometry" />
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
