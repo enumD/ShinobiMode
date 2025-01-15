@@ -11,7 +11,7 @@ Activate Environment
 
 >> source pRec/bin/activate  
 
-Install dependences: see requirements.txt
+Install dependences inside the new environment with pip: **see requirements.txt**
 
 Terminate  
 
