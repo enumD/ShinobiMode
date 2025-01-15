@@ -112,4 +112,14 @@ The module has 3 jumper settings at the back of it. The sensors default settings
 **R-GN** : (Detection Range Adjustment) By installing a suitable resistor you can reduce the detection range. The default detection range is 7m. If you install a 1M resistor the distance reduces to 5m, while a 270K resistor reduces it to 1.5m.  
 **R-CDS** : (Light Sensitivity Adjustment) You can use this as an alternative to soldering the LDR. Any resistor between 47K – 100K will suffice. The lower the value, the brighter the light must be in order to disable the trigger.  
 
-I think that i will use a resistance of 200K ohm to reduce the range between 1.5m and 2 m.
+Here are two images, the first with two sensors with 2.5 m range and the other with one sensor with 3.6 m range: camper size is 2,2 m wide and 5.62 m long
+
+![2500 mm](https://github.com/enumD/PeopleRecognition/blob/main/picture/2500mm.png)  
+
+![3600 mm](https://github.com/enumD/PeopleRecognition/blob/main/picture/3600.png)  
+
+To obtain these ranges i should use 500 KOhm for 2.5 m and a 720KOhm for 3.6 m. 
+
+I figured out that i cannot place the sensors below the camper because it's not safe when driving. It would be cool to place some linear actuator to automatize the movement but its too expensive for me, i must install the sensors on the sides or on the roof and face them downward, using the holes of the solar panel for the cables. I have to design a box to protect the sensor and to limit the window of detection to point to the ground. foil paper can be used to block unwanted directions. 
+
+
