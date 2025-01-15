@@ -1,4 +1,4 @@
-# 1. HC-SR501  
+## 1. HC-SR501  
 Main Features:
 This is one of the most popular and affordable PIR sensors.
 Good detection range (up to about 7 meters with a 120° detection zone).
@@ -13,7 +13,7 @@ Where to Buy: Amazon, AliExpress, or online electronics stores.
 
 $ 3 euro each
 
-# 2. AM312  
+## 2. AM312  
 Main Features:
 
 A miniaturized PIR sensor compared to other models.
@@ -28,7 +28,7 @@ Where to Buy: Amazon, AliExpress.
 
 $ 2-3 euro each
 
-# 3. PIR Motion Sensor Module (KY-022)  
+## 3. PIR Motion Sensor Module (KY-022)  
 Main Features:
 
 Low-cost module.
@@ -43,7 +43,8 @@ Where to Buy: Amazon, AliExpress, or online electronics stores.
 
 $ 4 euro each
 
-# 4. RCWL-0516 (Microwave Sensor)  
+## 4. RCWL-0516 (Microwave Sensor)   
+
 Main Features:
 
 This sensor is not a PIR sensor but a microwave sensor that detects motion using microwaves.
@@ -58,7 +59,7 @@ Where to Buy: Amazon, AliExpress, electronics stores.
 
 $ 2.5 euro each and maybe it's not necessary to point directly 
 
-# 5. Panasonic EKMC1601111  
+## 5. Panasonic EKMC1601111  
 Main Features:
 
 High-sensitivity PIR sensor.
@@ -72,3 +73,6 @@ Cons: More expensive than basic PIR sensors like HC-SR501.
 Where to Buy: Amazon, electronics distributors like Digi-Key or Mouser.
 
 $ 10-11 euro each
+
+
+# Which one?
