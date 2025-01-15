@@ -80,5 +80,7 @@ $ 10-11 euro each
 The camper is outside: sun, rain and atmosferic agent represent an hard environment.  
 PIR sensors suffer (src chatgpt):  
 **Direct sunlight**: can cause a lot of false positives or false negatives because the sunlight can interfere with the sensor’s ability to distinguish between the heat emitted by a person and the heat of surrounding objects (such as the ground or the vehicle).   
-**Thermal Interference**:  
-In some cases, a hot surface (like a sun-heated car or camper) can emit enough infrared radiation that the PIR sensor can't distinguish it from a person, leading to incorrect readings.
+**Thermal Interference**:In some cases, a hot surface (like a sun-heated car or camper) can emit enough infrared radiation that the PIR sensor can't distinguish it from a person, leading to incorrect readings.  
+
+PIR sensors suffer a lot with direct sunligth, i can install the sensors on the external roof of the camper and point them down the sides, this could reduce the possibility to have direct sunlight throught them.  
+Another option could be to install the sensors under the camper, under the bumper or better inside the bumper like the car's professional ones. With the microwave sensor maybe i can  
