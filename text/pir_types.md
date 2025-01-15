@@ -120,6 +120,6 @@ Here are two images, the first with two sensors with 2.5 m range and the other w
 
 To obtain these ranges i should use 500 KOhm for 2.5 m and a 720KOhm for 3.6 m. 
 
-I figured out that i cannot place the sensors below the camper because it's not safe when driving. It would be cool to place some linear actuator to automatize the movement but its too expensive for me, i must install the sensors on the sides or on the roof and face them downward, using the holes of the solar panel for the cables. I have to design a box to protect the sensor and to limit the window of detection to point to the ground. foil paper can be used to block unwanted directions. 
+Maybe i will start with one and see his capabilities when placed under the camper. 
 
 
