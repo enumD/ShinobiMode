@@ -218,7 +218,10 @@
         <mxCell id="XIHXmzrnx7aPzLWd52Pc-88" value="Is the person still present?" style="whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="565" y="-1040" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="XIHXmzrnx7aPzLWd52Pc-93" value="Activate offensive mode" style="whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;rounded=1;" vertex="1" parent="1">
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-117" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="XIHXmzrnx7aPzLWd52Pc-93" target="XIHXmzrnx7aPzLWd52Pc-116">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-93" value="Activate Warning Mode" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="565" y="-940" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="XIHXmzrnx7aPzLWd52Pc-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0;exitDx=0;exitDy=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="XIHXmzrnx7aPzLWd52Pc-23" target="XIHXmzrnx7aPzLWd52Pc-44">
@@ -271,6 +274,50 @@
         </mxCell>
         <mxCell id="XIHXmzrnx7aPzLWd52Pc-112" value="Wait 3 sec" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;" vertex="1" parent="1">
           <mxGeometry x="-413.29000000000013" y="-810" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-120" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="XIHXmzrnx7aPzLWd52Pc-116" target="XIHXmzrnx7aPzLWd52Pc-119">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-116" value="Wait 30 second" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="765" y="-940" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-122" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="XIHXmzrnx7aPzLWd52Pc-119" target="XIHXmzrnx7aPzLWd52Pc-76">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="740" y="-1010" />
+              <mxPoint x="740" y="-1070" />
+              <mxPoint x="540" y="-1070" />
+              <mxPoint x="540" y="-1135" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-123" value="NO" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XIHXmzrnx7aPzLWd52Pc-122">
+          <mxGeometry x="-0.6855" y="1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-126" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="XIHXmzrnx7aPzLWd52Pc-119" target="XIHXmzrnx7aPzLWd52Pc-125">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-127" value="YES" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="XIHXmzrnx7aPzLWd52Pc-126">
+          <mxGeometry x="-0.2279" y="-5" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-119" value="Is the person still present?" style="whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="765" y="-1040" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-129" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.25;entryDx=0;entryDy=0;" edge="1" parent="1" source="XIHXmzrnx7aPzLWd52Pc-125" target="XIHXmzrnx7aPzLWd52Pc-93">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-125" value="Activate Alarm Mode" style="whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;rounded=1;" vertex="1" parent="1">
+          <mxGeometry x="765" y="-1150" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-130" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Alarm Mode&lt;/h1&gt;&lt;div&gt;- Send notification via Telegram with snaps from the webcam&lt;/div&gt;&lt;div&gt;- Activate a continuous alarm sound&lt;/div&gt;&lt;div&gt;- Record the scene&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="335" y="-850" width="345" height="110" as="geometry" />
+        </mxCell>
+        <mxCell id="XIHXmzrnx7aPzLWd52Pc-131" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Warning Mode&lt;/h1&gt;&lt;div&gt;- Play a voice message &quot;Presence revelead near the camper, please stay back&quot;&lt;/div&gt;&lt;div&gt;- Turn some light red to make effect&lt;/div&gt;&lt;div&gt;- Record the scene&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="335" y="-740" width="335" height="140" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
