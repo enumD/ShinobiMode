@@ -1,4 +1,4 @@
-# PeopleRecognition
+# Shinobi Mode
 
 This is the architecture of the Sentinel Mode for camper:
 
