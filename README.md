@@ -1,6 +1,6 @@
 # Shinobi Mode
 
-This is the architecture of the Sentinel Mode for camper:
+This is the architecture of the Shinobi Mode for camper:
 
 ![arch](https://github.com/enumD/PeopleRecognition/blob/main/picture/arch.png)  
 
