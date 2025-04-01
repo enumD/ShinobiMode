@@ -5,6 +5,7 @@
 #include <filesystem>
 #include <fstream>
 #include "../utils/Notification.h"
+#include "../utils/Audio.h"
 
 class SettingsWindow {
 public:
@@ -21,5 +22,6 @@ private:
     
     void checkAndCreateFile(const std::string& filename);
     void saveConfig();
+    void setAudio();
     void loadConfig();
 };

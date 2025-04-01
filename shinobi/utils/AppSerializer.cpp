@@ -13,10 +13,17 @@ void AppSerializer::serialize(const AppSetting& settings, const std::string& fil
     size_t id_size = settings.m_wifi_id.size();
     size_t pswd_size = settings.m_wifi_pswd.size();
 
+    // WIFI ID
     file.write(reinterpret_cast<const char*>(&id_size), sizeof(id_size));
     file.write(settings.m_wifi_id.c_str(), id_size);
+
+    // WIFI PASSW
     file.write(reinterpret_cast<const char*>(&pswd_size), sizeof(pswd_size));
     file.write(settings.m_wifi_pswd.c_str(), pswd_size);
+
+    // SYSTEM VOLUE
+    file.write(reinterpret_cast<const char*>(&settings.m_volume), sizeof(settings.m_volume));
+
     file.close();
 }
 
@@ -37,6 +44,9 @@ AppSetting AppSerializer::deserialize(const std::string& filename) {
     file.read(reinterpret_cast<char*>(&pswd_size), sizeof(pswd_size));
     settings.m_wifi_pswd.resize(pswd_size);
     file.read(&settings.m_wifi_pswd[0], pswd_size);
+
+    file.read(reinterpret_cast<char*>(&settings.m_volume), sizeof(settings.m_volume));
+
     
     file.close();
     return settings;

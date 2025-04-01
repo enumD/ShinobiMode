@@ -25,12 +25,13 @@ void SettingsWindow::render()
     ImGui::InputText("WiFi Password", &m_settings.m_wifi_pswd[0], m_settings.m_wifi_pswd.size() + 1, ImGuiInputTextFlags_Password);
 
     // Example volume control
-    static float volume = 0.5f;
-    ImGui::SliderFloat("Volume", &volume, 0.0f, 1.0f);
+    ImGui::SliderInt("Volume", &m_settings.m_volume, 0, 100);
 
     // Add a 'Save' button that triggers a function when pressed
     if (ImGui::Button("Save")) {
         this->saveConfig();  // Call the function that will save the settings
+        AudioManager audio;
+        audio.SetVolume(m_settings.m_volume);
         Notification::Show("Settings saved successfully", Notification::Level::SUCCESS);
     }
 
@@ -53,6 +54,11 @@ void SettingsWindow::saveConfig()
     }
 }
 
+void SettingsWindow::setAudio()
+{
+
+
+}
 
 void SettingsWindow::loadConfig()
 {

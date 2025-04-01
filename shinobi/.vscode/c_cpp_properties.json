@@ -6,7 +6,8 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/extern/imgui",
                 "${workspaceFolder}/extern/imgui/backends",
-                "/usr/include/opencv4"  // <<--- AGGIUNGI QUESTA LINEA
+                "/usr/include/opencv4", // open cv
+                "/usr/include/pulse"    // pulse
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",

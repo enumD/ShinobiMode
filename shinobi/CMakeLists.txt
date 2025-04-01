@@ -15,6 +15,9 @@ find_package(glfw3 REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(nlohmann_json 3.0 REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(PkgConfig REQUIRED)
+pkg_check_modules(PULSEAUDIO REQUIRED libpulse libpulse-simple)
+pkg_check_modules(GLIB REQUIRED glib-2.0)
 
 
 set(OpenCV_DIR /usr/lib/cmake/opencv4)  # <-- Controlla che il percorso sia corretto per il tuo sistema
@@ -34,6 +37,7 @@ add_executable(my_app
     utils/LayoutHelper.cpp
     utils/AppSerializer.cpp
     utils/Notification.cpp
+    utils/Audio.cpp
 
 )
 
@@ -44,6 +48,8 @@ target_link_libraries(my_app PRIVATE
     imgui                  # Da extern/imgui/CMakeLists.txt
     nlohmann_json::nlohmann_json
     ${OpenCV_LIBS}
+    ${PULSEAUDIO_LIBRARIES}
+    ${GLIB_LIBRARIES}
 )
 
 # 5. Include directories
@@ -51,4 +57,11 @@ target_include_directories(my_app PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/extern/imgui
     ${CMAKE_CURRENT_SOURCE_DIR}/extern/imgui/backends
     ${OpenCV_INCLUDE_DIRS}  # Fix corretto: aggiunto include di OpenCV
+    ${PULSEAUDIO_INCLUDE_DIRS}
+    ${GLIB_INCLUDE_DIRS}
+)
+
+target_compile_options(my_app PRIVATE
+    ${PULSEAUDIO_CFLAGS_OTHER}
+    ${GLIB_CFLAGS_OTHER}
 )
