@@ -1,18 +1,18 @@
-#include "MainWindow.h"
+#include "CameraWindow.h"
 #include <imgui_internal.h>
 
-void MainWindow::initialize() {
+void CameraWindow::initialize() {
    
     applyCustomStyle();
  
 }
-void MainWindow::shutdown()
+void CameraWindow::shutdown()
 {
     m_camera.stop();
 }
 
 
-void MainWindow::render() {
+void CameraWindow::render() {
     // Occupa tutto lo spazio disponibile per la visualizzazione della fotocamera
     ImGui::BeginChild("CameraView", ImVec2(0, 0), false, ImGuiWindowFlags_NoScrollbar);
     
@@ -50,7 +50,7 @@ void MainWindow::render() {
 }
 
 
-void MainWindow::setCamera()
+void CameraWindow::setCamera()
 {
     m_camera.updateFrame();
         
@@ -84,7 +84,7 @@ void MainWindow::setCamera()
                ImVec4(1,1,1,1), ImVec4(1,1,1,0.5f));
 }
 
-void MainWindow::setVoidCamera()
+void CameraWindow::setVoidCamera()
 {
      // Messaggio centrato
      ImVec2 centerPos = ImVec2(
@@ -106,7 +106,7 @@ void MainWindow::setVoidCamera()
   
 }
 
-void MainWindow::applyCustomStyle()
+void CameraWindow::applyCustomStyle()
 {
     ImGuiStyle& style = ImGui::GetStyle();
     

@@ -3,8 +3,7 @@
 #include "utils/Notification.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
-#include "gui/MainWindow.h"
-#include <GLFW/glfw3.h>
+#include "gui/CameraWindow.h"
 #include "gui/MyWindow.h"
 //#include "imgim_impl_opengl3.h"
 

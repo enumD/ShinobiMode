@@ -1,6 +1,6 @@
 #pragma once
 #include "Toolbar.h"
-#include "MainWindow.h"
+#include "CameraWindow.h"
 #include "SettingWindow.h"
 #include <vector>
 #include <memory>
@@ -14,7 +14,7 @@ public:
 
 private:
     Toolbar m_toolbar;
-    MainWindow m_mainWindow;
+    CameraWindow m_mainWindow;
     SettingsWindow m_settingsWindow;
     
     enum class ActiveWindow { NONE, MAIN, SETTINGS };

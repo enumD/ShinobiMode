@@ -2,7 +2,7 @@
 #pragma once
 #include "CameraStream.h"
 
-class MainWindow {
+class CameraWindow {
 public:
  
     void initialize();

@@ -28,7 +28,7 @@ add_executable(my_app
     gui/CameraStream.cpp
     gui/MyWindow.cpp
     gui/SettingWindow.cpp
-    gui/MainWindow.cpp
+    gui/CameraWindow.cpp
     utils/AppSerializer.cpp
     utils/AppSetting.cpp
     utils/LayoutHelper.cpp
