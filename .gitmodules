@@ -1,0 +1,3 @@
+[submodule "shinobi/extern/imgui"]
+	path = shinobi/extern/imgui
+	url = https://github.com/ocornut/imgui.git
