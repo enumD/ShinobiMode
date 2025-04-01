@@ -88,3 +88,4 @@ shinobi/build/extern/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_glfw.cpp.o
 shinobi/build/extern/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_glfw.cpp.o.d
 shinobi/build/extern/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_opengl3.cpp.o
 shinobi/build/extern/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_opengl3.cpp.o.d
+shinobi/extern/imgui
