@@ -1,3 +1,11 @@
-sudo apt install libglfw3-dev libopencv-dev nlohmann-json3-dev
+sudo apt install libglfw3-dev libopencv-dev nlohmann-json3-dev libgl1-mesa-dev
 
-git clone https://github.com/ocornut/imgui.git
+
+
+# Nella root del project
+mkdir -p extern
+git submodule add https://github.com/ocornut/imgui.git extern/imgui
+git submodule update --init --recursive
+
+# Update imgui run
+git submodule update --remote extern/imgui

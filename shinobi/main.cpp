@@ -1,9 +1,9 @@
-#include "imgui.h"
-#include "imgui_impl_glfw.h"
-#include "imgui_impl_opengl3.h"
 #include <GLFW/glfw3.h>
 #include "gui/Toolbar.h"
-#include "gui/OptionsScreen.h"
+#include "gui/OptionScreen.h"
+#include "imgui_impl_glfw.h"
+#include "imgui_impl_opengl3.h"
+//#include "imgim_impl_opengl3.h"
 
 int main() {
     if (!glfwInit()) return 1;

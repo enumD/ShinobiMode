@@ -1,4 +1,4 @@
-#include "OptionsScreen.h"
+#include "OptionScreen.h"
 
 OptionsScreen::OptionsScreen() {
     usbDevices = {"/dev/video0", "/dev/video1", "/dev/video2"};

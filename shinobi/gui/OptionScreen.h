@@ -2,7 +2,7 @@
 #include <vector>
 #include <string>
 #include "imgui.h"
-#include "utils/ConfigManager.h"
+#include "../utils/ConfigManager.h"
 
 class OptionsScreen {
 public:
