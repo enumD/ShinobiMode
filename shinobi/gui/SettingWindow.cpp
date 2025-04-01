@@ -30,8 +30,8 @@ void SettingsWindow::render()
     // Add a 'Save' button that triggers a function when pressed
     if (ImGui::Button("Save")) {
         this->saveConfig();  // Call the function that will save the settings
-        AudioManager audio;
-        audio.SetVolume(m_settings.m_volume);
+        Audio audio;
+        audio.setVolume(m_settings.m_volume);
         Notification::Show("Settings saved successfully", Notification::Level::SUCCESS);
     }
 

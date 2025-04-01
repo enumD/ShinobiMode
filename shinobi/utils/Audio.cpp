@@ -1,91 +1,148 @@
-// AudioManager.cpp
 #include "Audio.h"
-#include <thread>
+#include <pulse/pulseaudio.h>
 #include <iostream>
+#include <fstream>
+Audio::Audio() {}
 
-pa_mainloop* AudioManager::m_mainloop = nullptr;
-pa_context* AudioManager::m_context = nullptr;
-float AudioManager::m_currentVolume = 0.7f;
-bool AudioManager::m_isMuted = false;
+Audio::~Audio() {}
 
-AudioManager::AudioManager() {
-    m_mainloop = pa_mainloop_new();
-    m_context = pa_context_new(pa_mainloop_get_api(m_mainloop), "ImGui Audio Control");
-    
-    pa_context_set_state_callback(m_context, ContextStateCallback, nullptr);
-    pa_context_connect(m_context, nullptr, PA_CONTEXT_NOFLAGS, nullptr);
-    
-    // Avvia il thread per il mainloop
-    std::thread([](){
-        int ret;
-        if (pa_mainloop_run(m_mainloop, &ret) < 0) {
-            std::cerr << "PulseAudio mainloop error" << std::endl;
-        }
-    }).detach();
-}
 
-AudioManager::~AudioManager() {
-    if (m_context) {
-        pa_context_disconnect(m_context);
-        pa_context_unref(m_context);
+
+void Audio::setVolume(int volume) {
+    if (volume < 0) volume = 0;
+    if (volume > 100) volume = 100;
+
+    // Create mainloop and context
+    pa_mainloop *mainloop = pa_mainloop_new();
+    pa_context *context = pa_context_new(pa_mainloop_get_api(mainloop), "VolumeControl");
+
+    // Connect to PulseAudio context
+    if (pa_context_connect(context, nullptr, PA_CONTEXT_NOFLAGS, nullptr) < 0) {
+        std::cerr << "Error: Unable to connect to PulseAudio!" << std::endl;
+        pa_mainloop_free(mainloop);
+        return;
     }
-    if (m_mainloop) {
-        pa_mainloop_free(m_mainloop);
+
+    // Wait until the context is ready
+    while (pa_context_get_state(context) != PA_CONTEXT_READY) {
+        pa_mainloop_iterate(mainloop, 1, nullptr);
     }
-}
 
-void AudioManager::ContextStateCallback(pa_context* c, void* userdata) {
-    switch (pa_context_get_state(c)) {
-        case PA_CONTEXT_READY:
-            pa_context_get_sink_info_by_name(c, "@DEFAULT_SINK@", SinkInfoCallback, nullptr);
-            break;
-        case PA_CONTEXT_FAILED:
-        case PA_CONTEXT_TERMINATED:
-            break;
-        default:
-            break;
+    // Get the server info and check default sink
+    const pa_server_info *server_info = nullptr;
+    pa_context_get_server_info(context, [](pa_context *, const pa_server_info *info, void *userdata) {
+        *reinterpret_cast<const pa_server_info **>(userdata) = info;
+    }, &server_info);
+
+    // Loop to ensure we get the info
+    while (!server_info) {
+        pa_mainloop_iterate(mainloop, 1, nullptr);
     }
-}
 
-void AudioManager::SinkInfoCallback(pa_context* c, const pa_sink_info* i, int eol, void* userdata) {
-    if (eol < 0) return;
-    if (!i) return;
-    
-    m_currentVolume = static_cast<float>(pa_cvolume_avg(&i->volume) / PA_VOLUME_NORM);
-    m_isMuted = i->mute;
-}
+    if (!server_info || !server_info->default_sink_name) {
+        std::cerr << "Error: No default audio sink found!" << std::endl;
+        pa_context_disconnect(context);
+        pa_context_unref(context);
+        pa_mainloop_free(mainloop);
+        return;
+    }
 
-void AudioManager::SetVolume(float level) {
-    if (!m_context || level < 0.0f || level > 1.0f) return;
-    
-    pa_volume_t vol = static_cast<pa_volume_t>(level * PA_VOLUME_NORM);
+    std::cout << "Default Sink: " << server_info->default_sink_name << std::endl;
+
+    // Convert volume (0-100%) to PulseAudio scale (0-65536)
     pa_cvolume cvol;
-    pa_cvolume_set(&cvol, 2, vol); // 2 canali (stereo)
-    
-    pa_operation* op = pa_context_set_sink_volume_by_name(
-        m_context, "@DEFAULT_SINK@", &cvol, SuccessCallback, nullptr);
-    if (op) pa_operation_unref(op);
-    
-    m_currentVolume = level;
-    m_isMuted = (level == 0.0f);
-}
+    pa_cvolume_set(&cvol, 1, volume * PA_VOLUME_NORM / 100);
 
-void AudioManager::ToggleMute() {
-    if (!m_context) return;
-    
-    pa_operation* op = pa_context_set_sink_mute_by_name(
-        m_context, "@DEFAULT_SINK@", !m_isMuted, SuccessCallback, nullptr);
-    if (op) pa_operation_unref(op);
-    
-    m_isMuted = !m_isMuted;
-}
-
-float AudioManager::GetVolume() {
-    return m_currentVolume;
-}
-
-void AudioManager::SuccessCallback(pa_context* c, int success, void* userdata) {
-    if (!success) {
-        std::cerr << "PulseAudio operation failed" << std::endl;
+    // Set volume
+    pa_operation *op = pa_context_set_sink_volume_by_name(context, server_info->default_sink_name, &cvol, nullptr, nullptr);
+    if (op) {
+        // Wait for operation to complete
+        while (pa_operation_get_state(op) == PA_OPERATION_RUNNING) {
+            pa_mainloop_iterate(mainloop, 1, nullptr);
+        }
+        pa_operation_unref(op);
+    } else {
+        std::cerr << "Error: Failed to set volume!" << std::endl;
     }
+
+    // Disconnect and clean up
+    pa_context_disconnect(context);
+    pa_context_unref(context);
+    pa_mainloop_free(mainloop);
 }
+
+
+// void Audio::setVolume(int volume) {
+//     if (volume < 0) volume = 0;
+//     if (volume > 100) volume = 100;
+
+//     pa_mainloop *mainloop = pa_mainloop_new();
+//     pa_context *context = pa_context_new(pa_mainloop_get_api(mainloop), "VolumeControl");
+
+//     pa_context_connect(context, nullptr, PA_CONTEXT_NOFLAGS, nullptr);
+//     pa_mainloop_iterate(mainloop, 1, nullptr);
+
+//     while (pa_context_get_state(context) != PA_CONTEXT_READY) {
+//         pa_mainloop_iterate(mainloop, 1, nullptr);
+//     }
+
+//     // Get default sink name
+//     const pa_server_info *server_info;
+//     pa_context_get_server_info(context, [](pa_context *, const pa_server_info *info, void *userdata) {
+//         *reinterpret_cast<const pa_server_info **>(userdata) = info;
+//     }, &server_info);
+//     pa_mainloop_iterate(mainloop, 1, nullptr);
+
+//     if (!server_info || !server_info->default_sink_name) {
+//         std::cerr << "Error: No default audio sink found!" << std::endl;
+//         pa_context_disconnect(context);
+//         pa_context_unref(context);
+//         pa_mainloop_free(mainloop);
+//         return;
+//     }
+
+//     // Convert volume (0-100%) to PulseAudio scale (0-65536)
+//     pa_cvolume cvol;
+//     pa_cvolume_set(&cvol, 1, volume * PA_VOLUME_NORM / 100);
+
+//     // Set volume
+//     pa_operation *op = pa_context_set_sink_volume_by_name(context,server_info->default_sink_name, &cvol, nullptr, nullptr);
+//     if (op) pa_operation_unref(op);
+
+//     pa_context_disconnect(context);
+//     pa_context_unref(context);
+//     pa_mainloop_free(mainloop);
+// }
+
+
+
+
+// void Audio::setVolume(int volume) {
+//     if (volume < 0) volume = 0;
+//     if (volume > 100) volume = 100;
+
+//     pa_mainloop *mainloop = pa_mainloop_new();
+//     pa_context *context = pa_context_new(pa_mainloop_get_api(mainloop), "VolumeControl");
+
+//     pa_context_connect(context, nullptr, PA_CONTEXT_NOFLAGS, nullptr);
+//     pa_mainloop_iterate(mainloop, 1, nullptr);
+
+//     // Wait for the context to be ready
+//     while (pa_context_get_state(context) != PA_CONTEXT_READY) {
+//         pa_mainloop_iterate(mainloop, 1, nullptr);
+//     }
+
+//     // Convert volume percentage (0-100) to PulseAudio scale (0-65536)
+//     pa_cvolume cvol;
+//     pa_cvolume_set(&cvol, 1, volume * PA_VOLUME_NORM / 100);
+
+//     // Set the volume for the default audio sink
+//     pa_operation *op = pa_context_set_sink_volume_by_index(context, 0, &cvol, nullptr, nullptr);
+//     if (op != nullptr) {
+//         pa_operation_unref(op);
+//     }
+//     // Clean up
+//     pa_context_disconnect(context);
+//     pa_context_unref(context);
+//     pa_mainloop_free(mainloop);
+// }
