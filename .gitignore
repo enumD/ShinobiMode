@@ -89,3 +89,11 @@ shinobi/build/extern/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_glfw.cpp.o.d
 shinobi/build/extern/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_opengl3.cpp.o
 shinobi/build/extern/imgui/CMakeFiles/imgui.dir/backends/imgui_impl_opengl3.cpp.o.d
 shinobi/extern/imgui
+shinobi/build/CMakeFiles/my_app.dir/gui/CameraWindow.cpp.o
+shinobi/build/CMakeFiles/my_app.dir/gui/CameraWindow.cpp.o.d
+shinobi/build/CMakeFiles/my_app.dir/gui/MyWindow.cpp.o
+shinobi/build/CMakeFiles/my_app.dir/gui/MyWindow.cpp.o.d
+shinobi/build/CMakeFiles/my_app.dir/gui/SettingWindow.cpp.o
+shinobi/build/CMakeFiles/my_app.dir/gui/SettingWindow.cpp.o.d
+shinobi/build/CMakeFiles/my_app.dir/utils/Notification.cpp.o
+shinobi/build/CMakeFiles/my_app.dir/utils/Notification.cpp.o.d
