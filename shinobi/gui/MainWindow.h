@@ -14,6 +14,9 @@ private:
     CameraStream m_camera;
   
     bool m_showSettings = false;
+
+    void setCamera();
+    void setVoidCamera();
     
 
     void renderCameraPanel();

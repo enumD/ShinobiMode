@@ -1,18 +1,21 @@
 #include "CameraStream.h"
 #include <filesystem>
+#include <thread> // Aggiunto per std::this_thread
 
-CameraStream::CameraStream() {
-    glGenTextures(1, &m_textureID);
+CameraStream::CameraStream(): m_textureID(0), m_isRunning(false), m_currentDev_id(0)
+{  
     refreshDevices();
 }
 
 CameraStream::~CameraStream() {
     stop();
-    glDeleteTextures(1, &m_textureID);
+    if (m_textureID) {
+        glDeleteTextures(1, &m_textureID);
+    }
 }
 
 int CameraStream::currentDevice(){
-    return 0;
+    return m_currentDev_id;
 }
 
 void CameraStream::refreshDevices() {
@@ -25,20 +28,44 @@ void CameraStream::refreshDevices() {
     }
 }
 
-bool CameraStream::start(const std::string& device) {
-    stop();
-    if (m_cap.open(device)) {
-        m_isRunning = true;
-        return true;
+
+bool CameraStream::start(int dev_id) {
+    stop();  // Ferma qualsiasi istanza precedente
+    std::this_thread::sleep_for(std::chrono::milliseconds(100));
+
+    m_currentDev_id = dev_id;
+    std::cout << "Tentativo di aprire: " << m_devices[dev_id] << std::endl;
+
+    if (!m_cap.open(m_devices[dev_id], cv::CAP_V4L2)) {
+        std::cerr << "Errore: Impossibile aprire il dispositivo " << m_devices[dev_id] << std::endl;
+        return false;
     }
-    return false;
+
+    std::cout << "Dispositivo aperto con successo!" << std::endl;
+
+    m_isRunning = true;
+    glGenTextures(1, &m_textureID);
+    return true;
 }
 
 void CameraStream::stop() {
-    if (m_cap.isOpened()) {
-        m_cap.release();
+    if (m_isRunning) {
+        // Rilascia prima la texture
+        if (m_textureID) {
+            glDeleteTextures(1, &m_textureID);
+            m_textureID = 0;
+        }
+
+        // Assicuriamoci che GStreamer abbia chiuso la pipeline
+        if (m_cap.isOpened()) {
+            m_cap.set(cv::CAP_PROP_MODE, cv::VideoCaptureAPIs::CAP_GSTREAMER);
+            m_cap.release();
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(200)); // Aspetta che GStreamer completi la chiusura
+
+        m_isRunning = false;
     }
-    m_isRunning = false;
 }
 
 void CameraStream::updateFrame() {
@@ -49,6 +76,10 @@ void CameraStream::updateFrame() {
         cv::cvtColor(m_frame, m_frame, cv::COLOR_BGR2RGB);
         convertFrameToTexture();
     }
+    else{
+        std::cerr << "⚠️ Frame vuoto! Potrebbe esserci un problema con la webcam." << std::endl;
+    }
+
 }
 
 void CameraStream::convertFrameToTexture() {

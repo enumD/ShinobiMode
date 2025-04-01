@@ -25,9 +25,9 @@ set(OpenCV_DIR /usr/lib/cmake/opencv4)  # <-- Controlla che il percorso sia corr
 add_executable(my_app
     main.cpp
     gui/Toolbar.cpp
-    gui/OptionScreen.cpp  # Fix: "OptionScreen" -> "OptionsScreen"
     gui/CameraStream.cpp
-    gui/ApplicationController.cpp
+    gui/MyWindow.cpp
+    gui/SettingWindow.cpp
     gui/MainWindow.cpp
     utils/AppSerializer.cpp
     utils/AppSetting.cpp

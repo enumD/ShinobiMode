@@ -1,11 +1,11 @@
 #include <GLFW/glfw3.h>
 #include "gui/Toolbar.h"
-#include "gui/OptionScreen.h"
+
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "gui/MainWindow.h"
 #include <GLFW/glfw3.h>
-#include "gui/ApplicationController.h"
+#include "gui/MyWindow.h"
 //#include "imgim_impl_opengl3.h"
 
 int main() 
@@ -25,7 +25,7 @@ int main()
     ImGui_ImplOpenGL3_Init("#version 130");
      
         
-    ApplicationController app;
+    MyWindow app;
     app.initialize();
 
 
@@ -41,9 +41,6 @@ int main()
 
         // Rendering
         ImGui::Render();
-        int display_w, display_h;
-        glfwGetFramebufferSize(window, &display_w, &display_h);
-        glViewport(0, 0, display_w, display_h);
         glClear(GL_COLOR_BUFFER_BIT);
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         glfwSwapBuffers(window);
