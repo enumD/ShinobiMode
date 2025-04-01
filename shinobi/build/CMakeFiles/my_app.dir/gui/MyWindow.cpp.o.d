@@ -361,4 +361,12 @@ CMakeFiles/my_app.dir/gui/MyWindow.cpp.o: \
  /usr/include/GL/gl.h /usr/include/GL/glext.h \
  /usr/include/KHR/khrplatform.h \
  /home/da/repo/ShinobiMode/shinobi/gui/SettingWindow.h \
- /home/da/repo/ShinobiMode/shinobi/gui/../utils/MessageBox.h
+ /home/da/repo/ShinobiMode/shinobi/gui/../utils/AppSetting.h \
+ /usr/include/c++/11/filesystem /usr/include/c++/11/bits/fs_fwd.h \
+ /usr/include/c++/11/bits/fs_path.h /usr/include/c++/11/codecvt \
+ /usr/include/c++/11/bits/fs_dir.h /usr/include/c++/11/bits/fs_ops.h \
+ /usr/include/c++/11/fstream \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc \
+ /home/da/repo/ShinobiMode/shinobi/gui/../utils/Notification.h

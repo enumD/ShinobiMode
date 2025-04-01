@@ -1,4 +1,4 @@
-#pragma once
+
 #include "LayoutHelper.h"
 
 namespace Layout {

@@ -1,6 +1,6 @@
 #include <GLFW/glfw3.h>
 #include "gui/Toolbar.h"
-
+#include "utils/Notification.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
 #include "gui/MainWindow.h"
@@ -38,6 +38,7 @@ int main()
         ImGui::NewFrame();
 
         app.render();
+        Notification::Render();
 
         // Rendering
         ImGui::Render();

@@ -1,6 +1,6 @@
 #include "MyWindow.h"
 #include "imgui.h"
-#include "../utils/MessageBox.h"
+#include "../utils/Notification.h"
 
 
 
@@ -14,11 +14,11 @@ void MyWindow::initialize() {
 void MyWindow::setupToolbar() {
     // Aggiungi elementi alla toolbar (icona + callback)
     m_toolbar.AddIcon("home", "🏠", true, [this] {
-        MessageBox::Show("Hai cliccato sulla home");
+        Notification::Show("Hai cliccato sulla home", Notification::Level::SUCCESS);
     });
     
     m_toolbar.AddIcon("settings", "⚙️", true, [this] {
-        MessageBox::Show("Hai cliccato sulla impostazioni");
+        Notification::Show("Hai cliccato su setting", Notification::Level::SUCCESS);
       
     });
 }
@@ -59,40 +59,6 @@ void MyWindow::render() {
     ImGui::End(); // RootWindow
 }
 
-// void MyWindow::render() {
-//     // Finestra principale che occupa tutto lo schermo
-//     ImGui::SetNextWindowPos(ImVec2(0, 0));
-//     ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
-//     ImGui::Begin("rootWindow", nullptr, 
-//         ImGuiWindowFlags_NoTitleBar |
-//         ImGuiWindowFlags_NoResize |
-//         ImGuiWindowFlags_NoMove |
-//         ImGuiWindowFlags_NoScrollbar |
-//         ImGuiWindowFlags_NoBringToFrontOnFocus);
-
-//     // 1. Render della toolbar fissa in alto
-//     m_toolbar.Draw();
-
-//    // 2. Area sotto la toolbar (restante altezza)
-//    ImVec2 contentPos(0, 40);
-//    ImVec2 contentSize(ImGui::GetIO().DisplaySize.x, ImGui::GetIO().DisplaySize.y - 40);
-   
-//    ImGui::BeginChild("ContentArea", contentSize, false, ImGuiWindowFlags_NoScrollbar);
-
-//    // 3. Menu laterale fisso (50px)
-//    ImGui::BeginChild("LeftMenu", ImVec2(50, -1), true);
-//    renderMenu();
-//    ImGui::EndChild();
-
-//    // 4. Area contenuto adattabile (restante larghezza)
-//    ImGui::SameLine();
-//    ImGui::BeginChild("DynamicContent", ImVec2(-1, -1), true);
-//    renderContent();
-//    ImGui::EndChild();
-
-//    ImGui::EndChild(); // ContentArea
-//    ImGui::End(); // RootWindow
-// }
 
 void MyWindow::renderMenu() {
     ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, 20));

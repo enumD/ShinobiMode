@@ -33,7 +33,7 @@ add_executable(my_app
     utils/AppSetting.cpp
     utils/LayoutHelper.cpp
     utils/AppSerializer.cpp
-    utils/MessageBox.cpp
+    utils/Notification.cpp
 
 )
 

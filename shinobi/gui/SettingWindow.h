@@ -1,18 +1,25 @@
 #pragma once
-#include "AppSetting.h"
+#include "../utils/AppSetting.h"
 #include "imgui.h"
+#include <iostream>
+#include <filesystem>
+#include <fstream>
+#include "../utils/Notification.h"
 
 class SettingsWindow {
 public:
     void initialize();
     void render();
     void shutdown();
-    void saveSettings();
-    AppSetting m_settings;
+
     
 private:
     bool m_visible = false;
-    char m_wifiSSID[128] = "";
-    char m_wifiPassword[128] = "";
     std::string m_filename = "settings.dat";
+    AppSetting m_settings;
+    
+    
+    void checkAndCreateFile(const std::string& filename);
+    void saveConfig();
+    void loadConfig();
 };
