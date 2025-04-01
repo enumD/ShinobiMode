@@ -1,26 +1,47 @@
 #include "SettingWindow.h"
+#include "AppSerializer.h"
+
 
 void SettingsWindow::initialize() {
-    // Inizializzazione eventuali valori di configurazione
-    strncpy(m_wifiSSID, "MyWiFi", sizeof(m_wifiSSID));
-    strncpy(m_wifiPassword, "", sizeof(m_wifiPassword));
+    // Initialize configuration values
+    m_settings = AppSerializer::deserialize(m_filename);
 }
 
+
 void SettingsWindow::render() {
-    // Occupa tutto lo spazio disponibile
+    // Create a child window that occupies the entire available space
     ImGui::BeginChild("SettingsView", ImVec2(0, 0), true);
-    
-    ImGui::Text("Impostazioni dell'applicazione");
+
+    // Add a title for the settings window
+    ImGui::Text("Application Settings");
     ImGui::Separator();
     
-    // Esempio controllo
+    // Add an editable text field for the WiFi SSID
+    ImGui::InputText("WiFi ID", m_wifiSSID, sizeof(m_wifiSSID));
+
+    // Add an editable text field for the WiFi password (with password masking)
+    ImGui::InputText("WiFi Password", m_wifiPassword, sizeof(m_wifiPassword), ImGuiInputTextFlags_Password);
+
+    // Example volume control, you can remove this if not needed
     static float volume = 0.5f;
     ImGui::SliderFloat("Volume", &volume, 0.0f, 1.0f);
-    
+
+    // Add a 'Save' button that triggers a function when pressed
+    if (ImGui::Button("Save")) {
+        this->saveSettings();  // Call the function that will save the settings
+    }
+
+    // End of child window
     ImGui::EndChild();
 }
 
 
+void SettingsWindow::saveSettings()
+{
+
+}
+
+
 void SettingsWindow::shutdown() {
-    // Cleanup se necessario
+    // Cleanup if needed
 }
