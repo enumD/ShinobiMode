@@ -9,3 +9,7 @@ git submodule update --init --recursive
 
 # Update imgui run
 git submodule update --remote extern/imgui
+
+# Compile
+da@da-HP:~/repo/ShinobiMode/shinobi$ rm -rf build/ && mkdir build && cd build
+da@da-HP:~/repo/ShinobiMode/shinobi/build$ cmake -DCMAKE_BUILD_TYPE=Debug .. && make -j$(nproc)

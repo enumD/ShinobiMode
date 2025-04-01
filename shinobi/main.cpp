@@ -3,9 +3,13 @@
 #include "gui/OptionScreen.h"
 #include "imgui_impl_glfw.h"
 #include "imgui_impl_opengl3.h"
+#include "gui/MainWindow.h"
+#include <GLFW/glfw3.h>
+#include "gui/ApplicationController.h"
 //#include "imgim_impl_opengl3.h"
 
-int main() {
+int main() 
+{
     if (!glfwInit()) return 1;
 
     GLFWwindow* window = glfwCreateWindow(1280, 720, "My App", NULL, NULL);
@@ -14,26 +18,28 @@ int main() {
 
     IMGUI_CHECKVERSION();
     ImGui::CreateContext();
+    // Enable docking (MUST be done before first ImGui::NewFrame())
+    // ImGuiIO& io = ImGui::GetIO(); 
+    // io.ConfigFlags |= ImGuiConfigFlags_DockingEnable; // <-- Add this line
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 130");
+     
+        
+    ApplicationController app;
+    app.initialize();
 
-    Toolbar toolbar;
-    OptionsScreen optionsScreen;
-    bool showOptions = false;
-
-    toolbar.AddIcon("settings", "⚙️", true, [&showOptions] { 
-        showOptions = true; 
-    });
 
     while (!glfwWindowShouldClose(window)) {
         glfwPollEvents();
+        
+        // Start ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
-        toolbar.Draw();
-        optionsScreen.Draw(&showOptions);
+        app.render();
 
+        // Rendering
         ImGui::Render();
         int display_w, display_h;
         glfwGetFramebufferSize(window, &display_w, &display_h);
@@ -43,6 +49,32 @@ int main() {
         glfwSwapBuffers(window);
     }
 
+
+    // while (!glfwWindowShouldClose(window)) {
+    //     glfwPollEvents();
+
+    //     ImGui_ImplOpenGL3_NewFrame();
+    //     ImGui_ImplGlfw_NewFrame();
+    //     ImGui::NewFrame();
+
+    //     toolbar.Draw();
+    //     optionsScreen.Draw(&showOptions);
+
+    //     ImGui::Render();
+
+       
+
+    //     int display_w, display_h;
+    //     glfwGetFramebufferSize(window, &display_w, &display_h);
+    //     glViewport(0, 0, display_w, display_h);
+    //     glClear(GL_COLOR_BUFFER_BIT);
+    //     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    //     glfwSwapBuffers(window);
+    
+    // }
+
+    // CleanUp
+    app.shutdown();
     ImGui_ImplOpenGL3_Shutdown();
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
