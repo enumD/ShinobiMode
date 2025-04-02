@@ -110,7 +110,7 @@ The module has 3 jumper settings at the back of it. The sensors default settings
 
 **C-TM** : (Pulse length Adjustment) By installing a suitable SMD capacitor you can adjust the repeat trigger time by extending the output pulse length. Default trigger time is 2s. Increasing capacitor's capacity will make repeat trigger time longer. A 0.2µF capacitor extends the output pulse to 50s, while 1µF extends it to 250s.  
 **R-GN** : (Detection Range Adjustment) By installing a suitable resistor you can reduce the detection range. The default detection range is 7m. If you install a 1M resistor the distance reduces to 5m, while a 270K resistor reduces it to 1.5m.  
-**R-CDS** : (Light Sensitivity Adjustment) You can use this as an alternative to soldering the LDR. Any resistor between 47K – 100K will suffice. The lower the value, the brighter the light must be in order to disable the trigger.  
+**R-CDS** : (Light Sensitivity Adjustment) You can use this as an alternative to soldering the LDR. Any resistor between 47K – 100K will suffice. The lower the value, the brighter the light must be in order to disable the trigger.  Not needed
 
 Here are two images, the first with two sensors with 2.5 m range and the other with one sensor with 3.6 m range: camper size is 2,2 m wide and 5.62 m long
 
@@ -119,7 +119,6 @@ Here are two images, the first with two sensors with 2.5 m range and the other w
 ![3600 mm](https://github.com/enumD/PeopleRecognition/blob/main/picture/3600.png)  
 
 To obtain these ranges i should use 500 KOhm for 2.5 m and a 720KOhm for 3.6 m. 
-
-Maybe i will start with one and see his capabilities when placed under the camper. 
+The distance between object and sensor could be determined by reading the voltage value for the OUT pin. Higher pin means closer object? I should buy one and try it
 
 
