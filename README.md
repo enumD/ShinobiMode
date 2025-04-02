@@ -1,6 +1,6 @@
 # Shinobi Mode
 
-This is the architecture of the Shinobi Mode for camper:
+This is the main functionalities of Shinobi:
 
 ![arch](https://github.com/enumD/PeopleRecognition/blob/main/picture/arch.png)  
 
