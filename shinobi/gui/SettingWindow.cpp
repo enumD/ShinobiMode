@@ -11,8 +11,8 @@ void SettingsWindow::initialize() {
 /// @brief Render func called in mainloop
 void SettingsWindow::render() 
 {
-    // Create a child window that occupies the entire available space
-    ImGui::BeginChild("SettingsView", ImVec2(0, 0), true);
+    // Create this child window that occupies the entire available space
+    ImGui::BeginChild("Setting Window", ImVec2(0, 0), true);
 
     // Add a title for the settings window
     ImGui::Text("Application Settings");

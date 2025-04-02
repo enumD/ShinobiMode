@@ -17,6 +17,7 @@ int main()
     glfwSwapInterval(1);
 
     IMGUI_CHECKVERSION();
+
     ImGui::CreateContext();
     // Enable docking (MUST be done before first ImGui::NewFrame())
     // ImGuiIO& io = ImGui::GetIO(); 
@@ -29,48 +30,28 @@ int main()
     app.initialize();
 
 
-
-    while (!glfwWindowShouldClose(window)) {
+    while (!glfwWindowShouldClose(window)) 
+    {
         glfwPollEvents();
         
-        // Start ImGui frame
+        // New ImGui frame
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();
 
+        // Call MyWindow render function
         app.render();
+        
+        // Call Notification render function
         Notification::Render();
 
-        // Rendering
+        // ImGui render
         ImGui::Render();
+
         glClear(GL_COLOR_BUFFER_BIT);
         ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
         glfwSwapBuffers(window);
     }
-
-
-    // while (!glfwWindowShouldClose(window)) {
-    //     glfwPollEvents();
-
-    //     ImGui_ImplOpenGL3_NewFrame();
-    //     ImGui_ImplGlfw_NewFrame();
-    //     ImGui::NewFrame();
-
-    //     toolbar.Draw();
-    //     optionsScreen.Draw(&showOptions);
-
-    //     ImGui::Render();
-
-       
-
-    //     int display_w, display_h;
-    //     glfwGetFramebufferSize(window, &display_w, &display_h);
-    //     glViewport(0, 0, display_w, display_h);
-    //     glClear(GL_COLOR_BUFFER_BIT);
-    //     ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
-    //     glfwSwapBuffers(window);
-    
-    // }
 
     // CleanUp
     app.shutdown();
@@ -78,5 +59,6 @@ int main()
     ImGui_ImplGlfw_Shutdown();
     ImGui::DestroyContext();
     glfwTerminate();
+    
     return 0;
 }

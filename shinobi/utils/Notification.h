@@ -13,6 +13,7 @@ public:
     static void Render();
     
 private:
+
     struct NotificationData {
         std::string message;
         Level level;
@@ -23,5 +24,7 @@ private:
     static std::vector<NotificationData> s_notifications;
     
     static ImVec4 GetLevelColor(Level level);
+
     static void RenderSingleNotification(const NotificationData& notification, float alpha);
+    
 };

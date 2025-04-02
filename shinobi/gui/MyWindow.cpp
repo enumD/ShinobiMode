@@ -17,7 +17,7 @@ void MyWindow::initialize()
 
 void MyWindow::setupToolbar() {
     // Aggiungi elementi alla toolbar (icona + callback)
-    m_toolbar.AddIcon("home", "🏠", true, [this] {
+    m_toolbar.AddIcon("home", "SHINOBI ON", true, [this] {
         Notification::Show("Hai cliccato sulla home", Notification::Level::SUCCESS);
     });
     
@@ -32,7 +32,7 @@ void MyWindow::render()
     // Finestra principale che occupa tutto lo schermo
     ImGui::SetNextWindowPos(ImVec2(0, 0));
     ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
-    ImGui::Begin("rootWindow", nullptr, 
+    ImGui::Begin("My Window", nullptr, 
         ImGuiWindowFlags_NoTitleBar |
         ImGuiWindowFlags_NoResize |
         ImGuiWindowFlags_NoMove |
@@ -61,7 +61,7 @@ void MyWindow::render()
     }
     ImGui::EndChild(); // ContentArea
     
-    ImGui::End(); // RootWindow
+    ImGui::End(); // End MyWindow
 }
 
 

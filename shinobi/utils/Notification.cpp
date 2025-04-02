@@ -6,7 +6,8 @@
 
 std::vector<Notification::NotificationData> Notification::s_notifications;
 
-void Notification::Show(const std::string& message, Level level, float duration) {
+void Notification::Show(const std::string& message, Level level, float duration) 
+{
     s_notifications.push_back({
         message,
         level,
@@ -44,7 +45,8 @@ void Notification::RenderSingleNotification(const NotificationData& notification
         ImGuiWindowFlags_NoDecoration | 
         ImGuiWindowFlags_AlwaysAutoResize | 
         ImGuiWindowFlags_NoSavedSettings | 
-        ImGuiWindowFlags_NoFocusOnAppearing | 
+        ImGuiWindowFlags_Tooltip |
+     //   ImGuiWindowFlags_NoFocusOnAppearing | // I wantfocus? 
         ImGuiWindowFlags_NoNav)) {
         
         // Level indicator (left border)
@@ -106,7 +108,8 @@ void Notification::Render() {
     const float startY = 10.0f;
     float currentY = startY;
     
-    for (auto& notification : s_notifications) {
+    for (auto& notification : s_notifications) 
+    {
         float elapsed = std::chrono::duration<float>(currentTime - notification.showTime).count();
         float remaining = notification.duration - elapsed;
         
