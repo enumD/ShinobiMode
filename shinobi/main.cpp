@@ -5,6 +5,7 @@
 #include "imgui_impl_opengl3.h"
 #include "gui/CameraWindow.h"
 #include "gui/MyWindow.h"
+#include "gui/ModeSelector.h"
 //#include "imgim_impl_opengl3.h"
 
 int main() 
@@ -23,9 +24,10 @@ int main()
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init("#version 130");
      
-        
+    // MAIN WINDOW    
     MyWindow app;
     app.initialize();
+
 
 
     while (!glfwWindowShouldClose(window)) {

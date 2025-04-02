@@ -4,10 +4,14 @@
 
 
 
-void MyWindow::initialize() {
+void MyWindow::initialize() 
+{
     m_mainWindow.initialize();
   
     m_settingsWindow.initialize();
+
+    m_modeSelector.init();
+ 
     setupToolbar();
 }
 
@@ -23,7 +27,8 @@ void MyWindow::setupToolbar() {
     });
 }
 
-void MyWindow::render() {
+void MyWindow::render() 
+{
     // Finestra principale che occupa tutto lo schermo
     ImGui::SetNextWindowPos(ImVec2(0, 0));
     ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
@@ -63,6 +68,8 @@ void MyWindow::render() {
 void MyWindow::renderMenu() {
     ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(0, 20));
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 15));
+    ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(0, 15));
+
     
     // Bottoni verticali centrati
     ImGui::SetCursorPosX((50 - 40) * 0.5f); // Centra in 50px
@@ -76,8 +83,15 @@ void MyWindow::renderMenu() {
     if (ImGui::Button("⚙️", ImVec2(40, 40))) {
         m_activeWindow = ActiveWindow::SETTINGS;
     }
+
+    ImGui::SetCursorPosX((50 - 40) * 0.5f);
+
+    if (ImGui::Button("666", ImVec2(40, 40))) {
+        m_activeWindow = ActiveWindow::MODE_SELECTOR;
+    }
     
-    ImGui::PopStyleVar(2);
+    
+    ImGui::PopStyleVar(3);
 }
 
 void MyWindow::renderContent() {
@@ -88,6 +102,9 @@ void MyWindow::renderContent() {
         case ActiveWindow::SETTINGS:
             m_settingsWindow.render();
             break;
+        case ActiveWindow::MODE_SELECTOR:
+            m_modeSelector.render();
+            break;
         case ActiveWindow::NONE:
             ImGui::Text("Seleziona una funzione dal menu a destra");
             break;
@@ -97,4 +114,6 @@ void MyWindow::renderContent() {
 void MyWindow::shutdown() {
     m_mainWindow.shutdown();
     m_settingsWindow.shutdown();
+    m_modeSelector.shutdown();
+    
 }

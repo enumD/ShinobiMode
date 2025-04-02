@@ -4,6 +4,7 @@
 void CameraWindow::initialize() {
    
     applyCustomStyle();
+    m_camera.start(0);
  
 }
 void CameraWindow::shutdown()
@@ -12,27 +13,27 @@ void CameraWindow::shutdown()
 }
 
 
-void CameraWindow::render() {
-    // Occupa tutto lo spazio disponibile per la visualizzazione della fotocamera
+void CameraWindow::render() 
+{
+    // Occupy all space available
     ImGui::BeginChild("CameraView", ImVec2(0, 0), false, ImGuiWindowFlags_NoScrollbar);
     
-    // Se la fotocamera è in esecuzione, mostriamo il flusso video
-    if (m_camera.isRunning()) {
+    if (m_camera.isRunning()) 
+    {
         setCamera();
     } else {
         setVoidCamera();
     }
     
-    // Ora rendiamo il pulsante "Switch Camera" sopra la camera stessa
-    // Posizioniamo il cursore per il pulsante in sovrapposizione
+    // Set Cursor Pos for switch button
     ImGui::SetCursorPos(ImVec2(ImGui::GetContentRegionAvail().x - 120, 10));
     
-    // Stile personalizzato per il pulsante
+    // Button Style
     ImGui::PushStyleColor(ImGuiCol_Button, ImVec4(0.2f, 0.2f, 0.2f, 0.7f));
     ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4(0.3f, 0.3f, 0.3f, 0.9f));
     ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4(0.15f, 0.15f, 0.15f, 0.9f));
 
-    // Crea il pulsante sopra l'immagine della fotocamera
+    // Create  button on the stream view
     if (ImGui::Button("Switch", ImVec2(100, 50))) {
         auto devices = m_camera.availableDevices();
         if (!devices.empty()) {
@@ -42,10 +43,10 @@ void CameraWindow::render() {
         }
     }
 
-    // Ripristina lo stile predefinito
+    // Reset predefined style
     ImGui::PopStyleColor(3);
 
-    // Fine della finestra per la camera
+    // Close Child
     ImGui::EndChild();
 }
 
@@ -54,30 +55,30 @@ void CameraWindow::setCamera()
 {
     m_camera.updateFrame();
         
-    // Ottieni dimensioni disponibili
+    // Get  available dimension
     ImVec2 avail = ImGui::GetContentRegionAvail();
     
-    // Calcola aspect ratio dal frame corrente
+    // Calculate Aspect ration current frame
     float aspect = m_camera.getAspectRatio();
     
-    // Calcola dimensioni mantenendo l'aspect ratio
+    // Calculate dimension by camera aspect ratio
     float targetWidth = avail.x;
     float targetHeight = targetWidth / aspect;
     
-    // Se troppo alto, scala in base all'altezza
+    // If too high scale
     if (targetHeight > avail.y) {
         targetHeight = avail.y;
         targetWidth = targetHeight * aspect;
     }
     
-    // Calcola offset per centrare
+    // Calculate offset to center 
     float offsetX = (avail.x - targetWidth) * 0.5f;
     float offsetY = (avail.y - targetHeight) * 0.5f;
     
     ImGui::SetCursorPosX(ImGui::GetCursorPosX() + offsetX);
     ImGui::SetCursorPosY(ImGui::GetCursorPosY() + offsetY);
     
-    // Mostra l'immagine
+    // Show image
     ImGui::Image(m_camera.textureID(), 
                ImVec2(targetWidth, targetHeight),
                ImVec2(0,0), ImVec2(1,1),

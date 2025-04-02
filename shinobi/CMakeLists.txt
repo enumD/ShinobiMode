@@ -32,6 +32,7 @@ add_executable(my_app
     gui/MyWindow.cpp
     gui/SettingWindow.cpp
     gui/CameraWindow.cpp
+    gui/ModeSelector.cpp
     utils/AppSerializer.cpp
     utils/AppSetting.cpp
     utils/LayoutHelper.cpp
