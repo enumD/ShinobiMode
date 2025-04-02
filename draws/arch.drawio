@@ -373,9 +373,9 @@
         <mxCell id="5maV6O98vk3PdNXA-Cb5-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="5maV6O98vk3PdNXA-Cb5-7" target="5maV6O98vk3PdNXA-Cb5-10">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="5maV6O98vk3PdNXA-Cb5-23" value="OpenCV" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="5maV6O98vk3PdNXA-Cb5-22">
+        <mxCell id="5maV6O98vk3PdNXA-Cb5-23" value="OpenCV" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];fontSize=15;" vertex="1" connectable="0" parent="5maV6O98vk3PdNXA-Cb5-22">
           <mxGeometry x="0.2833" relative="1" as="geometry">
-            <mxPoint as="offset" />
+            <mxPoint x="-17" as="offset" />
           </mxGeometry>
         </mxCell>
       </root>
