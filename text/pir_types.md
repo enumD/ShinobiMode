@@ -91,11 +91,11 @@ My choice is going in the direction of the microwave sensor:
 
 ### Pinout  
 The RCWL0516 module is a single breakout board with the following connections:  
-3V3 : it is the "output" from the onboard 3.3V regulator which can be used to power external circuits. Remember, this is not an input pin. This pin can provide up to 100mA of current.  
-GND : is the ground pin.  
-OUT : is the 3.3V TTL logic output. This pin goes HIGH for 2seconds when a motion is detected and goes LOW when no motion is detected. The output of this module is "analog" and can be connected to an analog input of a microcontroller and sampled by an ADC. The output voltage is roughly proportional to the distance between the sensor and the object.   
-VIN : provides power to the module. Connect this pin to an input voltage anywhere between 4 to 28V (however, 5V is commonly used). This module consumes less than 3mA of current so, you can easily power this by the 5V output from an Arduino or a Raspberry Pi.  
-CDS : pins are where you attach an optional LDR (light dependent resistor) allowing it to operate only in the dark.  
+**3V3** : it is the "output" from the onboard 3.3V regulator which can be used to power external circuits. Remember, this is not an input pin. This pin can provide up to 100mA of current.  
+**GND** : is the ground pin.  
+**OUT** : is the 3.3V TTL logic output. This pin goes HIGH for 2seconds when a motion is detected and goes LOW when no motion is detected. The output of this module is "analog" and can be connected to an analog input of a microcontroller and sampled by an ADC. The output voltage is roughly proportional to the distance between the sensor and the object.   
+**VIN** : provides power to the module. Connect this pin to an input voltage anywhere between 4 to 28V (however, 5V is commonly used). This module consumes less than 3mA of current so, you can easily power this by the 5V output from an Arduino or a Raspberry Pi.  
+**CDS** : pins are where you attach an optional LDR (light dependent resistor) allowing it to operate only in the dark.  
 
 ![Sensor specs](https://github.com/enumD/PeopleRecognition/blob/main/picture/RCWL_0516_specs_02.png)  
 
