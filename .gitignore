@@ -1,3 +1,4 @@
+shinobi/build
 shinobi/build/cmake_install.cmake
 shinobi/build/CMakeCache.txt
 shinobi/build/Makefile
@@ -126,3 +127,15 @@ shinobi/build/.cmake/api/v1/reply/index-2025-04-01T23-53-25-0458.json
 shinobi/build/.cmake/api/v1/reply/target-my_app-Debug-5ca72590e3570386bf2e.json
 shinobi/build/CMakeFiles/my_app.dir/gui/ModeSelector.cpp.o
 shinobi/build/CMakeFiles/my_app.dir/gui/ModeSelector.cpp.o.d
+shinobi/imgui.ini
+shinobi/main.cpp
+shinobi/build/.ninja_deps
+shinobi/build/.ninja_log
+shinobi/build/build.ninja
+shinobi/build/compile_commands.json
+shinobi/build/.cmake/api/v1/reply/cache-v2-5207bd9faa97c59066fb.json
+shinobi/build/.cmake/api/v1/reply/cmakeFiles-v1-00ef284ecaa2249d6fb2.json
+shinobi/build/.cmake/api/v1/reply/index-2025-04-02T16-35-50-0978.json
+shinobi/build/.cmake/api/v1/reply/toolchains-v1-78e1ec32f5d5e8dda251.json
+shinobi/build/CMakeFiles/rules.ninja
+shinobi/imgui.ini
