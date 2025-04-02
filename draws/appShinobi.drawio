@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.0.11">
   <diagram name="Page-1" id="ZCRHmxUp7qXE9HKA1dkY">
-    <mxGraphModel dx="1839" dy="527" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="2537" dy="899" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -104,14 +104,26 @@
         <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-33" value="Mode Selector" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="85" y="710" width="340" height="350" as="geometry" />
         </mxCell>
-        <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-34" value="This frame allow the user to select the different alarm mode provided by Shinobi:&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;No Mode&lt;/b&gt;: Nothing to do, disable all other mode.&lt;/div&gt;&lt;div&gt;&lt;b&gt;Dog Mode: &lt;/b&gt;s&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Sentinel Mode:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Shinobi Mode:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;, Dog Mode, Sentinel Mode, Shinobi Mode&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="Lg3aBeJ_nyOV5X6SMWgB-33">
-          <mxGeometry x="10" y="30" width="320" height="140" as="geometry" />
+        <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-34" value="This frame allow the user to select the different alarm mode provided by Shinobi:&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;No Mode&lt;/b&gt;: Nothing to do, disable all other mode.&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Dog Mode: &lt;/b&gt;Activate barking and skretching&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Sentinel Mode:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;&lt;br&gt;&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;b&gt;Shinobi Mode:&lt;/b&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;, Dog Mode, Sentinel Mode, Shinobi Mode&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="Lg3aBeJ_nyOV5X6SMWgB-33">
+          <mxGeometry x="10" y="30" width="320" height="180" as="geometry" />
         </mxCell>
         <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-35" value="Setting Frame" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
           <mxGeometry x="720" y="710" width="340" height="180" as="geometry" />
         </mxCell>
         <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-36" value="This frame has just to stream the webcam:&lt;div&gt;- Agnostico su ciò che è connesso e non è connesso&lt;/div&gt;&lt;div&gt;- Start trying to stream video0&lt;/div&gt;&lt;div&gt;- A button to switch from the webcam connected.&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="Lg3aBeJ_nyOV5X6SMWgB-35">
           <mxGeometry x="10" y="30" width="390" height="330" as="geometry" />
+        </mxCell>
+        <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-37" value="NO MODE" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="10" y="1100" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-38" value="DOG MODE" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="170" y="1100" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-39" value="SENTINEL MODE" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="1100" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-40" value="SHINOBI MODE" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="510" y="1100" width="120" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
