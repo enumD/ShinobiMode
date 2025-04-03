@@ -75,6 +75,19 @@ Where to Buy: Amazon, electronics distributors like Digi-Key or Mouser.
 
 $ 10-11 euro each
 
+# ⚙️  VL53L1X
+Emette un raggio laser IR (invisibile all'occhio umano)
+Il raggio colpisce un oggetto e rimbalza
+Il sensore misura il tempo di ritorno (Time of Flight, ToF)
+Restituisce il valore della distanza in millimetri (mm)
+non è influenzato dalle condizioni meteorologiche
+Distanza massima: 400 cm (4 metri) in modalità standard
+
+Più preciso sotto i 2 metri
+
+👁️ Angolo di rilevamento: circa 15° (può essere regolato)
+
+
 
 # Which one?  
 The camper is outside: sun, rain and atmosferic agent represent an hard environment.  
