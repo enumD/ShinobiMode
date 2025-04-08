@@ -1,16 +1,19 @@
 cmake_minimum_required(VERSION 3.10)
 project(my_app)
 
-set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)  # Force compiler to use c++20
 
-# Policy per evitare warning OpenGL
+
+
+# Avoid warning for OpenGl
 cmake_policy(SET CMP0072 NEW)
 set(OpenGL_GL_PREFERENCE GLVND)
 
 # 1. ImGui come submodule (con il TUO CMakeLists.txt in extern/imgui)
 add_subdirectory(extern/imgui)
 
-# 2. Trova le altre dipendenze
+# 2. Find other dependencies
 find_package(glfw3 REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(nlohmann_json 3.0 REQUIRED)
@@ -20,11 +23,12 @@ pkg_check_modules(PULSEAUDIO REQUIRED libpulse libpulse-simple)
 pkg_check_modules(GLIB REQUIRED glib-2.0)
 
 
-set(OpenCV_DIR /usr/lib/cmake/opencv4)  # <-- Controlla che il percorso sia corretto per il tuo sistema
+# OPEN CV
+set(OpenCV_DIR /usr/lib/cmake/opencv4) 
 
 
 
-# 3. Configura il tuo eseguibile
+# 3. Configure your executable
 add_executable(my_app
     main.cpp
     gui/Toolbar.cpp
@@ -41,14 +45,15 @@ add_executable(my_app
     utils/Audio.cpp
     utils/SensorData.cpp
     src/SensorMng.cpp
+    src/dog.cpp
 
 )
 
-# 4. Collegamento librerie
+# 4. Link library
 target_link_libraries(my_app PRIVATE
     glfw
     OpenGL::GL
-    imgui                  # Da extern/imgui/CMakeLists.txt
+    imgui                  # Da extern/shinobi-imgui/CMakeLists.txt
     nlohmann_json::nlohmann_json
     ${OpenCV_LIBS}
     ${PULSEAUDIO_LIBRARIES}
@@ -59,9 +64,9 @@ target_link_libraries(my_app PRIVATE
 target_include_directories(my_app PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/extern/imgui
     ${CMAKE_CURRENT_SOURCE_DIR}/extern/imgui/backends
-    ${OpenCV_INCLUDE_DIRS}  # Fix corretto: aggiunto include di OpenCV
-    ${PULSEAUDIO_INCLUDE_DIRS}
-    ${GLIB_INCLUDE_DIRS}
+    ${OpenCV_INCLUDE_DIRS}                              # Open CV
+    ${PULSEAUDIO_INCLUDE_DIRS}                          # Pulse Audio
+    ${GLIB_INCLUDE_DIRS}                                # GLib
 )
 
 target_compile_options(my_app PRIVATE

@@ -46,8 +46,6 @@ public:
 
 private:
     // Mutex per gestire l'accesso concorrente al file di log
-    static std::mutex mtx;
+    inline static std::mutex mtx;
 };
 
-// Definizione del mutex statico
-std::mutex Logger::mtx;

@@ -1,7 +1,7 @@
 
 #include "SensorMng.h"
 
-SensorMng::SensorMng() : m_bRunning(true)
+SensorMng::SensorMng() : m_bRunning(false)
 {
 
     for (size_t i = 0; i < NUM_OF_SENSORS; i++)
@@ -28,16 +28,14 @@ void SensorMng::stop()
         {
             m_thread.join();
 
-            std::cout << "SensorMng stopped \n"
-                      << std::endl;
+            std::cout << "SensorMng stopped \n" << std::endl;
         }
         else
         {
-            std::cout << "SensorMng stopped was not joinable \n"
-                      << std::endl;
+            std::cout << "SensorMng was not joinable \n" << std::endl;
         }
     }
-    catch (const std::exception &e)
+    catch (const std::exception& e)
     {
         Logger::log(e.what(), true);
     }
@@ -52,8 +50,7 @@ void SensorMng::start()
         // Start thread
         m_thread = std::thread(&SensorMng::sensorReaderThread, this);
 
-        std::cout << "SensorMng started\n"
-                  << std::endl;
+        std::cout << "SensorMng started\n" << std::endl;
     }
 }
 
@@ -86,16 +83,16 @@ void SensorMng::sensorReaderThread()
         {
             thread_func();
         }
-        catch (const std::exception &e)
+        catch (const std::exception& e)
         {
             std::cerr << e.what() << '\n';
+            Logger::log(e.what());
         }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(THREAD_SLEEP_MILLI));
     }
 
-    std::cout << "SensorMng thread exited while loop!\n"
-              << std::endl;
+    std::cout << "SensorMng thread exited while loop!\n" << std::endl;
 }
 
 void SensorMng::thread_func()
