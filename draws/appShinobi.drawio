@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/134.0.0.0 Safari/537.36" version="26.2.9">
   <diagram name="Page-1" id="ZCRHmxUp7qXE9HKA1dkY">
-    <mxGraphModel dx="2278" dy="1869" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+    <mxGraphModel dx="1802" dy="2713" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -122,7 +122,7 @@
         <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-35" value="Setting Frame" style="swimlane;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" parent="1" vertex="1">
           <mxGeometry x="720" y="710" width="340" height="180" as="geometry" />
         </mxCell>
-        <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-36" value="- Volume Control&lt;div&gt;- Hotspot wifi and password (not for remote VNC alternative)&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="Lg3aBeJ_nyOV5X6SMWgB-35" vertex="1">
+        <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-36" value="- Volume Control&lt;div&gt;- Hotspot wifi and password (not for remote VNC alternative)&lt;/div&gt;&lt;div&gt;- Log file size -&amp;gt; tasto delete log file&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="Lg3aBeJ_nyOV5X6SMWgB-35" vertex="1">
           <mxGeometry x="10" y="30" width="320" height="140" as="geometry" />
         </mxCell>
         <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-46" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="Lg3aBeJ_nyOV5X6SMWgB-37" target="Lg3aBeJ_nyOV5X6SMWgB-47" edge="1">
@@ -164,40 +164,45 @@
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-1" value="&lt;b&gt;My Window&lt;/b&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;align=center;" vertex="1" parent="1">
-          <mxGeometry x="70" y="-30" width="120" height="50" as="geometry" />
+          <mxGeometry x="-30" y="-1440" width="120" height="50" as="geometry" />
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kSOakFmPz-_cs2FXtYQN-2" target="kSOakFmPz-_cs2FXtYQN-1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-2" value="Main" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" vertex="1" parent="1">
-          <mxGeometry x="70" y="-150" width="120" height="60" as="geometry" />
+          <mxGeometry x="-30" y="-1560" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-5" value="&lt;div&gt;- Manage Toolbar&lt;/div&gt;&lt;div&gt;- Manage Left Menu&lt;br&gt;&lt;div&gt;- Manage windows rendering on right content&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=0;strokeColor=default;perimeterSpacing=0;labelPosition=center;verticalLabelPosition=middle;spacingTop=1;spacing=5;" vertex="1" parent="1">
-          <mxGeometry x="-270" y="-120" width="270" height="70" as="geometry" />
+          <mxGeometry x="-370" y="-1530" width="270" height="70" as="geometry" />
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-7" value="" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0;entryDx=0;entryDy=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" edge="1" parent="1" source="kSOakFmPz-_cs2FXtYQN-5" target="kSOakFmPz-_cs2FXtYQN-1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="320" y="160" as="sourcePoint" />
-            <mxPoint x="370" y="110" as="targetPoint" />
+            <mxPoint x="220" y="-1250" as="sourcePoint" />
+            <mxPoint x="270" y="-1300" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-9" value="" style="endArrow=classic;html=1;rounded=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="kSOakFmPz-_cs2FXtYQN-20" target="kSOakFmPz-_cs2FXtYQN-2">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="30" y="130" as="sourcePoint" />
-            <mxPoint x="30" y="220" as="targetPoint" />
+            <mxPoint x="-70" y="-1280" as="sourcePoint" />
+            <mxPoint x="-70" y="-1190" as="targetPoint" />
           </mxGeometry>
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-14" value="Camera&amp;nbsp;&lt;div&gt;Frame&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="-100" y="110" width="120" height="60" as="geometry" />
+          <mxGeometry x="-270" y="-1370" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-35" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kSOakFmPz-_cs2FXtYQN-19" target="kSOakFmPz-_cs2FXtYQN-36">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="30" y="-1150" as="targetPoint" />
+          </mxGeometry>
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-19" value="Alarm&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Mode&lt;/span&gt;&lt;div&gt;Frame&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="70" y="110" width="120" height="60" as="geometry" />
+          <mxGeometry x="-30" y="-1370" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-20" value="START" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;glass=0;labelBackgroundColor=none;labelBorderColor=none;textShadow=0;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="100" y="-240" width="60" height="30" as="geometry" />
+          <mxGeometry y="-1650" width="60" height="30" as="geometry" />
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-23" value="Setting&lt;div&gt;Frame&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
-          <mxGeometry x="240" y="110" width="120" height="60" as="geometry" />
+          <mxGeometry x="210" y="-1370" width="120" height="60" as="geometry" />
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-29" value="If sensor feel something along 2 meter start acting like theres a dog in there" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="50" y="1040" width="200" height="50" as="geometry" />
@@ -207,6 +212,27 @@
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-33" value="If sensor detect something within 2 meters for more than 30 scond start to:&lt;br&gt;- Trying to recognize people to prevent false alarm; act by himself and send telegram notification to explain his choices" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
           <mxGeometry x="550" y="1030" width="240" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-36" value="Alarm&amp;nbsp;&lt;span style=&quot;background-color: transparent; color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;Mode&lt;/span&gt;&lt;div&gt;Frame&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="-30" y="-1270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-37" value="- Manage the threads used to implement the alarms modes" style="text;html=1;align=left;verticalAlign=middle;whiteSpace=wrap;rounded=0;shadow=0;strokeColor=default;perimeterSpacing=0;labelPosition=center;verticalLabelPosition=middle;spacingTop=1;spacing=5;" vertex="1" parent="1">
+          <mxGeometry x="-400" y="-1270" width="270" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-39" value="" style="endArrow=none;html=1;rounded=0;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="kSOakFmPz-_cs2FXtYQN-37" target="kSOakFmPz-_cs2FXtYQN-36">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="30" y="-1260" as="sourcePoint" />
+            <mxPoint x="80" y="-1310" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-41" value="DOG&amp;nbsp;&lt;div&gt;Thread&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="-180" y="-1120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-42" value="Sentinel&amp;nbsp;&lt;div&gt;Thread&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="40" y="-1120" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-43" value="Shinobi&amp;nbsp;&lt;div&gt;Thread&lt;/div&gt;" style="whiteSpace=wrap;html=1;rounded=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
+          <mxGeometry x="280" y="-1120" width="120" height="60" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
