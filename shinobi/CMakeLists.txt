@@ -39,6 +39,8 @@ add_executable(my_app
     utils/AppSerializer.cpp
     utils/Notification.cpp
     utils/Audio.cpp
+    utils/SensorData.cpp
+    src/SensorMng.cpp
 
 )
 

@@ -6,9 +6,9 @@
 #include <vector>
 #include <memory>
 
-class MyWindow {
+class MyWindow
+{
 public:
-
     void initialize();
     void render();
     void shutdown();
@@ -16,15 +16,21 @@ public:
 private:
     // WINDOWs
     Toolbar m_toolbar;
-    CameraWindow m_mainWindow;
+    CameraWindow m_cameraWindow;
     SettingsWindow m_settingsWindow;
     ModeSelector m_modeSelector;
-    
-    enum class ActiveWindow { NONE, MAIN, SETTINGS, MODE_SELECTOR };
+
+    enum class ActiveWindow
+    {
+        NONE,
+        MAIN,
+        SETTINGS,
+        MODE_SELECTOR
+    };
     ActiveWindow m_activeWindow = ActiveWindow::NONE;
-    
+
     void setupToolbar();
-  
+
     void renderMenu();
     void renderContent();
 };

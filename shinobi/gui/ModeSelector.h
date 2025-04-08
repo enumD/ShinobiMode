@@ -4,24 +4,23 @@
 #include <string>
 #include <vector>
 #include <functional>
+#include "../utils/myGlobals.h"
 
-class ModeSelector {
+class ModeSelector
+{
 public:
-   
-    
-    // Render the ImGui interface
-    void render();
-    void init();
+      void init();
+
     void shutdown();
 
-    // Get currently selected mode index
-    int GetSelectedMode() const;
-    
-    // Get name of currently selected mode
-    std::string GetSelectedModeName() const;
+    void render();
+
+    AlarmMode GetSelectedMode() const;
 
 private:
-    int selectedMode; // Index of selected mode
-    std::vector<std::pair<std::string, bool>> modes; // List of modes (name, state)
-};
+    AlarmMode m_selectedMode = AlarmMode::NO_MODE;
 
+    bool m_bInit = false;
+
+    std::vector<std::pair<AlarmMode, bool>> m_modes; // List of modes (name, state)
+};

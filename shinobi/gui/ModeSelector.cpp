@@ -2,19 +2,30 @@
 
 void ModeSelector::init()
 {
-    selectedMode = 0;
+
+    m_bInit = true;
+
     // Initialize available modes
-    modes = {
-        {"Babbione Mode", false},
-        {"Sentinel Mode", false},
-        {"Shinobi Mode", false},
-        {"Dog Mode", false}};
+    m_modes = {
+        {AlarmMode::NO_MODE, false},
+        {AlarmMode::DOG_MODE, false},
+        {AlarmMode::SENTINEL_MODE, false},
+        {AlarmMode::SHINOBI_MODE, false}};
 
     // Select first mode by default
-    if (!modes.empty())
+    if (!m_modes.empty())
     {
-        modes[0].second = true;
+        m_modes[0].second = true;
+        m_selectedMode = m_modes[0].first;
     }
+}
+
+void ModeSelector::shutdown()
+{
+
+    m_selectedMode = AlarmMode::NO_MODE;
+    m_bInit = false;
+    m_modes.clear();
 }
 
 void ModeSelector::render()
@@ -28,28 +39,33 @@ void ModeSelector::render()
     // Increase the padding size (increasing padding makes the radio buttons appear larger)
     ImGui::PushStyleVar(ImGuiStyleVar_FramePadding, ImVec2(10, 10)); // Increase padding
     ImGui::PushStyleVar(ImGuiStyleVar_ItemSpacing, ImVec2(20, 15));  // Più distanziati
-    ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[0]); // Usa il font di default
-    ImGui::SetWindowFontScale(1.3f); // 1.5x più grande
+    ImGui::PushFont(ImGui::GetIO().Fonts->Fonts[0]);                 // Usa il font di default
+    ImGui::SetWindowFontScale(1.3f);                                 // 1.5x più grande
 
     // Radio buttons for modes
-    for (int i = 0; i < modes.size(); ++i)
+    for (int i = 0; i < m_modes.size(); ++i)
     {
-        bool isSelected = (selectedMode == i);
-        if (ImGui::RadioButton(modes[i].first.c_str(), isSelected))
+        bool isSelected = ((int)m_selectedMode == i);
+
+        std::string tmpString = AlarmMode_ToString(m_modes[i].first);
+
+        if (ImGui::RadioButton(tmpString.c_str(), isSelected))
         {
-            selectedMode = i;
+            m_selectedMode = (AlarmMode)i;
+
             // Update all modes' states
-            for (auto &mode : modes)
+            for (auto &mode : m_modes)
             {
                 mode.second = false;
             }
-            modes[i].second = true;
+
+            m_modes[i].second = true;
         }
 
         // Show state (On/Off)
         ImGui::SameLine();
-        ImGui::TextColored(modes[i].second ? ImVec4(0, 1, 0, 1) : ImVec4(1, 0, 0, 1),
-                           modes[i].second ? "On" : "Off");
+        ImGui::TextColored(m_modes[i].second ? ImVec4(0, 1, 0, 1) : ImVec4(1, 0, 0, 1),
+                           m_modes[i].second ? "On" : "Off");
     }
 
     // Restore the original padding after the radio buttons
@@ -61,27 +77,12 @@ void ModeSelector::render()
     // Save button
     if (ImGui::Button("Save"))
     {
-        
     }
 
     ImGui::EndChild();
 }
 
-int ModeSelector::GetSelectedMode() const
+AlarmMode ModeSelector::GetSelectedMode() const
 {
-    return selectedMode;
-}
-
-std::string ModeSelector::GetSelectedModeName() const
-{
-    if (selectedMode >= 0 && selectedMode < modes.size())
-    {
-        return modes[selectedMode].first;
-    }
-    return "";
-}
-
-void ModeSelector::shutdown()
-{
-    // Cleanup if needed
+    return m_selectedMode;
 }
