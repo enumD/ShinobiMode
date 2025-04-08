@@ -75,6 +75,19 @@ Where to Buy: Amazon, electronics distributors like Digi-Key or Mouser.
 
 $ 10-11 euro each
 
+# ⚙️  VL53L1X
+Emette un raggio laser IR (invisibile all'occhio umano)
+Il raggio colpisce un oggetto e rimbalza
+Il sensore misura il tempo di ritorno (Time of Flight, ToF)
+Restituisce il valore della distanza in millimetri (mm)
+non è influenzato dalle condizioni meteorologiche
+Distanza massima: 400 cm (4 metri) in modalità standard
+
+Più preciso sotto i 2 metri
+
+👁️ Angolo di rilevamento: circa 15° (può essere regolato)
+
+
 
 # Which one?  
 The camper is outside: sun, rain and atmosferic agent represent an hard environment.  
@@ -91,11 +104,11 @@ My choice is going in the direction of the microwave sensor:
 
 ### Pinout  
 The RCWL0516 module is a single breakout board with the following connections:  
-3V3 : it is the "output" from the onboard 3.3V regulator which can be used to power external circuits. Remember, this is not an input pin. This pin can provide up to 100mA of current.  
-GND : is the ground pin.  
-OUT : is the 3.3V TTL logic output. This pin goes HIGH for 2seconds when a motion is detected and goes LOW when no motion is detected. The output of this module is "analog" and can be connected to an analog input of a microcontroller and sampled by an ADC. The output voltage is roughly proportional to the distance between the sensor and the object.   
-VIN : provides power to the module. Connect this pin to an input voltage anywhere between 4 to 28V (however, 5V is commonly used). This module consumes less than 3mA of current so, you can easily power this by the 5V output from an Arduino or a Raspberry Pi.  
-CDS : pins are where you attach an optional LDR (light dependent resistor) allowing it to operate only in the dark.  
+**3V3** : it is the "output" from the onboard 3.3V regulator which can be used to power external circuits. Remember, this is not an input pin. This pin can provide up to 100mA of current.  
+**GND** : is the ground pin.  
+**OUT** : is the 3.3V TTL logic output. This pin goes HIGH for 2seconds when a motion is detected and goes LOW when no motion is detected. The output of this module is "analog" and can be connected to an analog input of a microcontroller and sampled by an ADC. The output voltage is roughly proportional to the distance between the sensor and the object.   
+**VIN** : provides power to the module. Connect this pin to an input voltage anywhere between 4 to 28V (however, 5V is commonly used). This module consumes less than 3mA of current so, you can easily power this by the 5V output from an Arduino or a Raspberry Pi.  
+**CDS** : pins are where you attach an optional LDR (light dependent resistor) allowing it to operate only in the dark.  
 
 ![Sensor specs](https://github.com/enumD/PeopleRecognition/blob/main/picture/RCWL_0516_specs_02.png)  
 
@@ -110,7 +123,7 @@ The module has 3 jumper settings at the back of it. The sensors default settings
 
 **C-TM** : (Pulse length Adjustment) By installing a suitable SMD capacitor you can adjust the repeat trigger time by extending the output pulse length. Default trigger time is 2s. Increasing capacitor's capacity will make repeat trigger time longer. A 0.2µF capacitor extends the output pulse to 50s, while 1µF extends it to 250s.  
 **R-GN** : (Detection Range Adjustment) By installing a suitable resistor you can reduce the detection range. The default detection range is 7m. If you install a 1M resistor the distance reduces to 5m, while a 270K resistor reduces it to 1.5m.  
-**R-CDS** : (Light Sensitivity Adjustment) You can use this as an alternative to soldering the LDR. Any resistor between 47K – 100K will suffice. The lower the value, the brighter the light must be in order to disable the trigger.  
+**R-CDS** : (Light Sensitivity Adjustment) You can use this as an alternative to soldering the LDR. Any resistor between 47K – 100K will suffice. The lower the value, the brighter the light must be in order to disable the trigger.  Not needed
 
 Here are two images, the first with two sensors with 2.5 m range and the other with one sensor with 3.6 m range: camper size is 2,2 m wide and 5.62 m long
 
@@ -119,7 +132,6 @@ Here are two images, the first with two sensors with 2.5 m range and the other w
 ![3600 mm](https://github.com/enumD/PeopleRecognition/blob/main/picture/3600.png)  
 
 To obtain these ranges i should use 500 KOhm for 2.5 m and a 720KOhm for 3.6 m. 
-
-Maybe i will start with one and see his capabilities when placed under the camper. 
+The distance between object and sensor could be determined by reading the voltage value for the OUT pin. Higher pin means closer object? I should buy one and try it
 
 
