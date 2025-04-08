@@ -133,23 +133,26 @@
         <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-37" value="NO MODE" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="-100" y="950" width="120" height="40" as="geometry" />
         </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-30" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Lg3aBeJ_nyOV5X6SMWgB-38" target="kSOakFmPz-_cs2FXtYQN-29">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-38" value="DOG MODE" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="150" y="950" width="120" height="40" as="geometry" />
+          <mxGeometry x="90" y="950" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-32" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Lg3aBeJ_nyOV5X6SMWgB-39" target="kSOakFmPz-_cs2FXtYQN-31">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-39" value="SENTINEL MODE" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="380" y="950" width="120" height="40" as="geometry" />
+          <mxGeometry x="350" y="950" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-34" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="Lg3aBeJ_nyOV5X6SMWgB-40" target="kSOakFmPz-_cs2FXtYQN-33">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-40" value="SHINOBI MODE" style="rounded=1;whiteSpace=wrap;html=1;" parent="1" vertex="1">
-          <mxGeometry x="580" y="950" width="120" height="40" as="geometry" />
+          <mxGeometry x="610" y="950" width="120" height="40" as="geometry" />
         </mxCell>
         <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-47" value="&lt;font&gt;Disable All other mode&lt;/font&gt;&lt;div&gt;&lt;font&gt;Nothing to do&lt;/font&gt;&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
           <mxGeometry x="-160" y="1050" width="240" height="30" as="geometry" />
-        </mxCell>
-        <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-48" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Alarm Mode&lt;/h1&gt;&lt;div&gt;- Send notification via Telegram with snaps from the webcam&lt;/div&gt;&lt;div&gt;- Activate a continuous alarm sound&lt;/div&gt;&lt;div&gt;- Record the scene&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="850" y="1190" width="345" height="110" as="geometry" />
-        </mxCell>
-        <mxCell id="Lg3aBeJ_nyOV5X6SMWgB-49" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Warning Mode&lt;/h1&gt;&lt;div&gt;- Play a voice message &quot;Presence revelead near the camper, please stay back&quot;&lt;/div&gt;&lt;div&gt;- Turn some light red to make effect&lt;/div&gt;&lt;div&gt;- Record the scene&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" parent="1" vertex="1">
-          <mxGeometry x="850" y="1300" width="335" height="140" as="geometry" />
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-26" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="kSOakFmPz-_cs2FXtYQN-1" target="kSOakFmPz-_cs2FXtYQN-14">
           <mxGeometry relative="1" as="geometry" />
@@ -195,6 +198,15 @@
         </mxCell>
         <mxCell id="kSOakFmPz-_cs2FXtYQN-23" value="Setting&lt;div&gt;Frame&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1" vertex="1" parent="1">
           <mxGeometry x="240" y="110" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-29" value="If sensor feel something along 2 meter start acting like theres a dog in there" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1040" width="200" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-31" value="If sensor detect something within 2 meters for more than 30 s, start to:&lt;br&gt;- Send foto to telegram&lt;br&gt;- Ask what to do or permorm fixed tasks" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="290" y="1025" width="240" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="kSOakFmPz-_cs2FXtYQN-33" value="If sensor detect something within 2 meters for more than 30 scond start to:&lt;br&gt;- Trying to recognize people to prevent false alarm; act by himself and send telegram notification to explain his choices" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="550" y="1030" width="240" height="90" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
