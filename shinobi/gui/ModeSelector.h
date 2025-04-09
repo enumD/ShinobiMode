@@ -1,15 +1,16 @@
 #pragma once
 
+#include "../src/ThreadMng.h"
+#include "../utils/myGlobals.h"
+#include <functional>
 #include <imgui.h>
 #include <string>
 #include <vector>
-#include <functional>
-#include "../utils/myGlobals.h"
 
 class ModeSelector
 {
-public:
-      void init();
+  public:
+    void init();
 
     void shutdown();
 
@@ -17,10 +18,12 @@ public:
 
     AlarmMode GetSelectedMode() const;
 
-private:
+  private:
     AlarmMode m_selectedMode = AlarmMode::NO_MODE;
 
     bool m_bInit = false;
 
     std::vector<std::pair<AlarmMode, bool>> m_modes; // List of modes (name, state)
+
+    ThreadMng m_threadMng;
 };

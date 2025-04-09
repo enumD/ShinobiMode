@@ -1,11 +1,12 @@
 // common.h
 #pragma once
-#include <string>
 #include "date.h"
+#include <string>
 
 #define NUM_OF_SENSORS 4
 
 #define THREAD_SLEEP_MILLI 500
+#define THREAD_SLEEP_MILLI_SENSOR_MNG 3000
 
 enum class AlarmMode
 {

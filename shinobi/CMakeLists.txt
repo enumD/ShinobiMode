@@ -48,6 +48,7 @@ add_executable(my_app
     utils/Logger.cpp
     src/SensorMng.cpp
     src/dog.cpp
+    src/ThreadMng.cpp
 
 )
 

@@ -6,11 +6,10 @@ void ModeSelector::init()
     m_bInit = true;
 
     // Initialize available modes
-    m_modes = {
-        {AlarmMode::NO_MODE, false},
-        {AlarmMode::DOG_MODE, false},
-        {AlarmMode::SENTINEL_MODE, false},
-        {AlarmMode::SHINOBI_MODE, false}};
+    m_modes = {{AlarmMode::NO_MODE, false},
+               {AlarmMode::DOG_MODE, false},
+               {AlarmMode::SENTINEL_MODE, false},
+               {AlarmMode::SHINOBI_MODE, false}};
 
     // Select first mode by default
     if (!m_modes.empty())
@@ -18,11 +17,14 @@ void ModeSelector::init()
         m_modes[0].second = true;
         m_selectedMode = m_modes[0].first;
     }
+
+    m_threadMng.Init();
+    m_threadMng.SetThread(m_selectedMode);
 }
 
 void ModeSelector::shutdown()
 {
-
+    m_threadMng.Terminate();
     m_selectedMode = AlarmMode::NO_MODE;
     m_bInit = false;
     m_modes.clear();
@@ -77,12 +79,10 @@ void ModeSelector::render()
     // Save button
     if (ImGui::Button("Save"))
     {
+        m_threadMng.SetThread(m_selectedMode);
     }
 
     ImGui::EndChild();
 }
 
-AlarmMode ModeSelector::GetSelectedMode() const
-{
-    return m_selectedMode;
-}
+AlarmMode ModeSelector::GetSelectedMode() const { return m_selectedMode; }

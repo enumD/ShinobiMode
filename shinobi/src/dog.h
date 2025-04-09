@@ -1,4 +1,5 @@
 #pragma once
+#include "../interface/IStartStop.h"
 #include "../src/SensorMng.h"
 #include "../utils/Logger.h"
 #include "../utils/SensorData.h"
@@ -12,7 +13,7 @@
 #include <thread>
 #include <vlc/vlc.h>
 
-class Dog
+class Dog : public IStartStop
 {
 
   public:
@@ -21,6 +22,8 @@ class Dog
     void start();
 
     void stop();
+
+    bool isRunning();
 
     ~Dog();
 

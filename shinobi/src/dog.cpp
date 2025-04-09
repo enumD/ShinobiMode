@@ -6,13 +6,7 @@ Dog::Dog(SensorMng *Sensormng)
 {
 }
 
-Dog::~Dog()
-{
-    if (this->m_thread.joinable())
-    {
-        this->stop();
-    }
-}
+Dog::~Dog() { this->stop(); }
 
 void Dog::stop()
 {
@@ -33,18 +27,21 @@ void Dog::stop()
 
             m_thread.join();
 
-            std::cout << "Dog thread stopped \n" << std::endl;
+            std::cout << "Dog::stop() - thread stopped \n" << std::endl;
         }
         else
         {
-            std::cout << "Dog thread was not joinable \n" << std::endl;
+            std::cout << "Dog::stop() - thread was not joinable \n" << std::endl;
         }
     }
     catch (const std::exception &e)
     {
         Logger::log(e.what(), true);
+        std::cout << e.what() << std::endl;
     }
 }
+
+bool Dog::isRunning() { return m_bRunning; }
 
 /// @brief Start Thread.
 /// @throws std::runtime_error if m_pSensormng is nullptr
@@ -54,6 +51,7 @@ void Dog::start()
     if (m_pSensormng == nullptr)
     {
         throw std::runtime_error("nullptr");
+        Logger::log("Dog::start() - sensormng nullptr", true);
     }
 
     if (m_bRunning == false)
@@ -65,7 +63,7 @@ void Dog::start()
         // Start thread
         m_thread = std::thread(&Dog::_thread_func, this);
 
-        std::cout << "Dog thread started\n" << std::endl;
+        std::cout << "Dog::start() - thread started\n" << std::endl;
     }
 }
 
@@ -99,6 +97,8 @@ void Dog::_createVlcMedia(const char *filepath)
     if (!media)
     {
         std::cerr << "Cannot load file: " << filepath << std::endl;
+        Logger::log(std::string("Dog::_createVlcMedia() - cannot load file:", filepath), true);
+
         return;
     }
 
@@ -108,7 +108,9 @@ void Dog::_createVlcMedia(const char *filepath)
 
     if (!player)
     {
-        std::cerr << "Cannot create media player" << std::endl;
+        std::cerr << "Cannot create media player: " << filepath << std::endl;
+        Logger::log(std::string("Dog::_createVlcMedia() - Cannot create media player: ", filepath), true);
+
         return;
     }
 }
@@ -141,39 +143,54 @@ void Dog::_thread_func()
         std::this_thread::sleep_for(std::chrono::milliseconds(THREAD_SLEEP_MILLI));
     }
 
-    std::cout << "SensorMng thread exited while loop!\n" << std::endl;
+    std::cout << "Dog::_thread_func() - SensorMng thread exited while loop!\n" << std::endl;
 }
 
 void Dog::_playRandomBark()
 {
-    _stopMediaPlayer();
-
-    std::string randAudio = _getRandomAudio();
-
-    libvlc_media_t *media = libvlc_media_new_path(m_pVlcInstance, randAudio.c_str());
-    if (!media)
+    if (m_pMediaPlayer != nullptr && libvlc_media_player_is_playing(m_pMediaPlayer))
     {
-        std::cerr << "Cannot load file: " << randAudio.c_str() << std::endl;
-        return;
+        // Vlc already playing a sound nothing to do
+        std::this_thread::sleep_for(std::chrono::milliseconds(THREAD_SLEEP_MILLI));
+    }
+    else
+    {
+        // Stop previously media terminated
+        _stopMediaPlayer();
+
+        std::string randAudio = _getRandomAudio();
+
+        libvlc_media_t *media = libvlc_media_new_path(m_pVlcInstance, randAudio.c_str());
+        if (!media)
+        {
+            std::cerr << "Cannot load file: " << randAudio.c_str() << std::endl;
+            Logger::log("Dog::_playRandomBark() - Cannot loadfile: ", true);
+
+            return;
+        }
+
+        m_pMediaPlayer = libvlc_media_player_new_from_media(media);
+
+        libvlc_media_release(media); // player manage media nofrom now on so release
+
+        if (!m_pMediaPlayer)
+        {
+            std::cerr << "Cannot create mediaplayer with media" << randAudio.c_str() << std::endl;
+            Logger::log(
+                std::string("Dog::_playRandomBark() - Cannot create mediaplayer with media ", randAudio.c_str()),
+                true);
+
+            return;
+        }
+
+        libvlc_media_player_play(m_pMediaPlayer);
     }
 
-    m_pMediaPlayer = libvlc_media_player_new_from_media(media);
+    // _waitForAudioToFinish();
 
-    libvlc_media_release(media); // player manage media nofrom now on so release
+    // _removeMediaEndEvent();
 
-    if (!m_pMediaPlayer)
-    {
-        std::cerr << "Cannot create mediaplayer with media" << randAudio.c_str() << std::endl;
-        return;
-    }
-
-    libvlc_media_player_play(m_pMediaPlayer);
-
-    _waitForAudioToFinish();
-
-    _removeMediaEndEvent();
-
-    _stopMediaPlayer();
+    // _stopMediaPlayer();
 }
 
 std::string Dog::_getRandomAudio()
@@ -181,7 +198,7 @@ std::string Dog::_getRandomAudio()
     std::vector<std::string> fileAudio;
 
     // Found audio file in the directory
-    for (const auto &entry : std::filesystem::directory_iterator("/audio"))
+    for (const auto &entry : std::filesystem::directory_iterator("audio"))
     {
         std::string estensione = entry.path().extension().string();
         if (estensione == ".wav" || estensione == ".mp3")
@@ -193,7 +210,7 @@ std::string Dog::_getRandomAudio()
     if (fileAudio.empty())
     {
         std::cerr << "No audio file" << std::endl;
-        Logger::log("No Audio file");
+        Logger::log("Dog::_getRandomAudio() - No Audio file");
         return "no audio file found in audio folder";
     }
 

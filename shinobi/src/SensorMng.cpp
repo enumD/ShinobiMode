@@ -11,6 +11,11 @@ SensorMng::SensorMng() : m_bRunning(false)
 
 SensorMng::~SensorMng()
 {
+    if (m_sensors.size() > 0)
+    {
+        m_sensors.clear();
+    }
+
     if (m_thread.joinable())
     {
         stop();
@@ -34,7 +39,7 @@ void SensorMng::stop()
             std::cout << "SensorMng was not joinable \n" << std::endl;
         }
     }
-    catch (const std::exception& e)
+    catch (const std::exception &e)
     {
         Logger::log(e.what(), true);
     }
@@ -64,8 +69,7 @@ std::vector<SensorData> SensorMng::getCurrentData()
 
     for (auto i = 0; i < m_sensors.size(); i++)
     {
-        tmpVector.push_back(
-            SensorData(m_sensors[i].m_id, m_sensors[i].m_status));
+        tmpVector.push_back(SensorData(m_sensors[i].m_id, m_sensors[i].m_status));
     }
 
     // Release lock
@@ -84,14 +88,13 @@ void SensorMng::sensorReaderThread()
         {
             thread_func();
         }
-        catch (const std::exception& e)
+        catch (const std::exception &e)
         {
             std::cerr << e.what() << '\n';
             Logger::log(e.what());
         }
 
-        std::this_thread::sleep_for(
-            std::chrono::milliseconds(THREAD_SLEEP_MILLI));
+        std::this_thread::sleep_for(std::chrono::milliseconds(THREAD_SLEEP_MILLI_SENSOR_MNG));
     }
 
     std::cout << "SensorMng thread exited while loop!\n" << std::endl;
@@ -116,7 +119,4 @@ void SensorMng::thread_func()
     m_lock.unlock();
 }
 
-uint64_t SensorMng::getCurrentTimestamp()
-{
-    return std::chrono::system_clock::now().time_since_epoch().count();
-}
+uint64_t SensorMng::getCurrentTimestamp() { return std::chrono::system_clock::now().time_since_epoch().count(); }
