@@ -5,7 +5,6 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)  # Force compiler to use c++20
 
 
-
 # Avoid warning for OpenGl
 cmake_policy(SET CMP0072 NEW)
 set(OpenGL_GL_PREFERENCE GLVND)
@@ -21,6 +20,8 @@ find_package(OpenCV REQUIRED)
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(PULSEAUDIO REQUIRED libpulse libpulse-simple)
 pkg_check_modules(GLIB REQUIRED glib-2.0)
+pkg_check_modules(VLC REQUIRED libvlc)
+
 
 
 # OPEN CV
@@ -44,6 +45,7 @@ add_executable(my_app
     utils/Notification.cpp
     utils/Audio.cpp
     utils/SensorData.cpp
+    utils/Logger.cpp
     src/SensorMng.cpp
     src/dog.cpp
 
@@ -58,7 +60,9 @@ target_link_libraries(my_app PRIVATE
     ${OpenCV_LIBS}
     ${PULSEAUDIO_LIBRARIES}
     ${GLIB_LIBRARIES}
+    ${VLC_LIBRARIES} 
 )
+
 
 # 5. Include directories
 target_include_directories(my_app PRIVATE
@@ -67,9 +71,12 @@ target_include_directories(my_app PRIVATE
     ${OpenCV_INCLUDE_DIRS}                              # Open CV
     ${PULSEAUDIO_INCLUDE_DIRS}                          # Pulse Audio
     ${GLIB_INCLUDE_DIRS}                                # GLib
+    ${VLC_INCLUDE_DIRS} 
 )
 
 target_compile_options(my_app PRIVATE
     ${PULSEAUDIO_CFLAGS_OTHER}
     ${GLIB_CFLAGS_OTHER}
+    ${VLC_CFLAGS_OTHER}
+
 )

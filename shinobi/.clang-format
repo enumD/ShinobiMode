@@ -1,3 +1,8 @@
-BasedOnStyle: Google
+
 IndentWidth: 4
 BreakBeforeBraces: Allman
+# Evita di spezzare le chiamate di funzione su più righe
+BinPackArguments: false           # Non "impacchettare" gli argomenti
+AllowAllArgumentsOnNextLine: false # Non spostare TUTTI gli argomenti a capo
+BreakBeforeBinaryOperators: None  # Evita a capo prima di operatori binari
+ColumnLimit: 120                  # Aumenta il limite di colonne (default: 80)

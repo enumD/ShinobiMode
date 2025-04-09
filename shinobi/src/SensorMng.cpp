@@ -3,7 +3,6 @@
 
 SensorMng::SensorMng() : m_bRunning(false)
 {
-
     for (size_t i = 0; i < NUM_OF_SENSORS; i++)
     {
         m_sensors.push_back(SensorData((double)i, 0));
@@ -65,9 +64,11 @@ std::vector<SensorData> SensorMng::getCurrentData()
 
     for (auto i = 0; i < m_sensors.size(); i++)
     {
-        tmpVector.push_back(SensorData(m_sensors[i].m_id, m_sensors[i].m_status));
+        tmpVector.push_back(
+            SensorData(m_sensors[i].m_id, m_sensors[i].m_status));
     }
 
+    // Release lock
     m_lock.unlock();
 
     return tmpVector;
@@ -89,7 +90,8 @@ void SensorMng::sensorReaderThread()
             Logger::log(e.what());
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(THREAD_SLEEP_MILLI));
+        std::this_thread::sleep_for(
+            std::chrono::milliseconds(THREAD_SLEEP_MILLI));
     }
 
     std::cout << "SensorMng thread exited while loop!\n" << std::endl;

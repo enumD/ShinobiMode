@@ -1,11 +1,13 @@
-#pragma once
+// Logger.h
+#ifndef LOGGER_H
+#define LOGGER_H
 
 #include "myGlobals.h"
 
 class SensorData
 {
 
-public:
+  public:
     SensorData();
 
     SensorData(double Id, double Status);
@@ -23,3 +25,5 @@ public:
     double m_id;
     std::chrono::time_point<std::chrono::system_clock, std::chrono::seconds> m_timeStamp;
 };
+
+#endif // LOGGER_H
