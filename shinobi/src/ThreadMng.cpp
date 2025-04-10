@@ -1,7 +1,8 @@
 #include "ThreadMng.h"
 
-ThreadMng::ThreadMng() : m_sensorMng(SensorMng()), m_dog(&m_sensorMng)
+ThreadMng::ThreadMng() : m_pSensorMng(nullptr), m_dog()
 {
+    m_pSensorMng = SensorMng::getInstance();
     // Add modes to thread manager
     m_threads.emplace_back(std::make_pair(AlarmMode::DOG_MODE, std::ref(m_dog)));
 }
@@ -16,7 +17,7 @@ ThreadMng::~ThreadMng()
 void ThreadMng::Init()
 {
     // Start Sensor Manager
-    m_sensorMng.start();
+    m_pSensorMng->start();
 
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
 }
@@ -29,7 +30,7 @@ void ThreadMng::Terminate()
         m_threads[i].second.stop();
     }
 
-    m_sensorMng.stop();
+    m_pSensorMng->stop();
 }
 
 /// @brief Stop all threads and then start the passed one

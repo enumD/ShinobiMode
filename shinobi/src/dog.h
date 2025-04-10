@@ -18,7 +18,7 @@ class Dog : public IStartStop
 {
 
   public:
-    explicit Dog(SensorMng *Sensormng);
+    explicit Dog();
 
     void start();
 
@@ -49,7 +49,7 @@ class Dog : public IStartStop
 
     std::thread m_thread;
     std::atomic<bool> m_bRunning;
-    SensorMng *m_pSensormng;
+    std::shared_ptr<SensorMng> m_pSensorMng;
     std::unique_ptr<libvlc_instance_t, decltype(&libvlc_release)> m_pVlcInstance;
     std::unique_ptr<libvlc_media_player_t, decltype(&libvlc_media_player_release)> m_pMediaPlayer;
 };

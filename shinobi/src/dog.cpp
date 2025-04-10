@@ -1,9 +1,10 @@
 #include "dog.h"
 
-Dog::Dog(SensorMng *Sensormng)
-    : m_bRunning(false), m_pSensormng(Sensormng), m_pVlcInstance(nullptr, libvlc_release),
+Dog::Dog()
+    : m_bRunning(false), m_pSensorMng(nullptr), m_pVlcInstance(nullptr, libvlc_release),
       m_pMediaPlayer(nullptr, libvlc_media_player_release)
 {
+    m_pSensorMng = SensorMng::getInstance();
 }
 
 Dog::~Dog() { this->stop(); }
@@ -44,10 +45,10 @@ bool Dog::isRunning() { return m_bRunning; }
 void Dog::start()
 {
     // Check sensor manager to prevent nulltpr on thread loop
-    if (m_pSensormng == nullptr)
+    if (m_pSensorMng == nullptr)
     {
-        throw std::runtime_error("nullptr");
         Logger::log("Dog::start() - sensormng nullptr", true);
+        throw std::runtime_error("Dog::start() - SensorMng nullptr");
     }
 
     if (m_bRunning == false)
@@ -95,7 +96,7 @@ void Dog::_thread_func()
         try
         {
             // Get sensor state
-            std::vector<SensorData> tmpVector = m_pSensormng->getCurrentData();
+            std::vector<SensorData> tmpVector = m_pSensorMng->getCurrentData();
 
             bool bIspresent =
                 std::any_of(tmpVector.begin(), tmpVector.end(), [](const auto &s) { return s.m_status != 0; });
@@ -134,7 +135,7 @@ void Dog::_playRandomBark()
         libvlc_media_t *media = libvlc_media_new_path(m_pVlcInstance.get(), randAudio.c_str());
         if (!media)
         {
-            std::cerr << "Cannot load file: " << randAudio.c_str() << std::endl;
+            std::cerr << "Dog::_playRandomBark() - Cannot load file: " << randAudio.c_str() << std::endl;
             Logger::log("Dog::_playRandomBark() - Cannot loadfile: ", true);
 
             return;
@@ -146,7 +147,8 @@ void Dog::_playRandomBark()
 
         if (rawPlayer == nullptr)
         {
-            std::cerr << "Cannot create mediaplayer with media" << randAudio.c_str() << std::endl;
+            std::cerr << "Dog::_playRandomBark() - Cannot create mediaplayer with media" << randAudio.c_str()
+                      << std::endl;
             Logger::log(
                 std::string("Dog::_playRandomBark() - Cannot create mediaplayer with media ", randAudio.c_str()),
                 true);
@@ -156,7 +158,17 @@ void Dog::_playRandomBark()
 
         m_pMediaPlayer.reset(rawPlayer);
 
-        libvlc_media_player_play(m_pMediaPlayer.get());
+        if (m_pMediaPlayer != nullptr)
+        {
+            libvlc_media_player_play(m_pMediaPlayer.get());
+        }
+        else
+        {
+            std::cerr << "Dog::_playRandomBark() - Cannot reset mediaplayer " << randAudio.c_str() << std::endl;
+            Logger::log("Dog::_playRandomBark() - Cannot reset mediaplayer ", true);
+
+            return;
+        }
     }
 }
 

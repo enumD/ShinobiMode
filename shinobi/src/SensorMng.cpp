@@ -1,6 +1,8 @@
 
 #include "SensorMng.h"
 
+std::shared_ptr<SensorMng> SensorMng::m_instance = nullptr;
+
 SensorMng::SensorMng() : m_bRunning(false)
 {
     for (size_t i = 0; i < NUM_OF_SENSORS; i++)
@@ -20,6 +22,16 @@ SensorMng::~SensorMng()
     {
         stop();
     }
+}
+
+std::shared_ptr<SensorMng> SensorMng::getInstance()
+{
+    // Create a new SensorMng only is not exist yet
+    if (!m_instance)
+    {
+        m_instance = std::shared_ptr<SensorMng>(new SensorMng());
+    }
+    return m_instance;
 }
 
 void SensorMng::stop()
@@ -65,15 +77,12 @@ std::vector<SensorData> SensorMng::getCurrentData()
     std::vector<SensorData> tmpVector;
 
     // Acquire lock
-    m_lock.lock();
+    std::lock_guard<std::mutex> guard(m_lock);
 
     for (auto i = 0; i < m_sensors.size(); i++)
     {
         tmpVector.push_back(SensorData(m_sensors[i].m_id, m_sensors[i].m_status));
     }
-
-    // Release lock
-    m_lock.unlock();
 
     return tmpVector;
 }
@@ -102,21 +111,13 @@ void SensorMng::sensorReaderThread()
 
 void SensorMng::thread_func()
 {
-    m_lock.lock();
+    std::lock_guard<std::mutex> guard(m_lock);
 
-    for (auto i = 0; i < m_sensors.size(); i++)
+    for (auto &sensor : m_sensors)
     {
-        if (m_sensors[i].m_status == 0)
-        {
-            m_sensors[i].m_status = 1;
-        }
-        else
-        {
-            m_sensors[i].m_status = 0;
-        }
+        // Alterna lo stato del sensore
+        sensor.m_status = (sensor.m_status == 0) ? 1 : 0;
     }
-
-    m_lock.unlock();
 }
 
 uint64_t SensorMng::getCurrentTimestamp() { return std::chrono::system_clock::now().time_since_epoch().count(); }

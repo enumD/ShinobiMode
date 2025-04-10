@@ -20,6 +20,6 @@ class ThreadMng
 
   private:
     std::vector<std::pair<AlarmMode, IStartStop &>> m_threads;
-    SensorMng m_sensorMng;
+    std::shared_ptr<SensorMng> m_pSensorMng;
     Dog m_dog;
 };
