@@ -1,8 +1,8 @@
 #include "dog.h"
 
 Dog::Dog(SensorMng *Sensormng)
-    : m_bRunning(false), m_pSensormng(Sensormng), m_pVlcInstance(nullptr), m_pMediaPlayer(nullptr),
-      m_audioFinished(false)
+    : m_bRunning(false), m_pSensormng(Sensormng), m_pVlcInstance(nullptr, libvlc_release),
+      m_pMediaPlayer(nullptr, libvlc_media_player_release)
 {
 }
 
@@ -16,11 +16,7 @@ void Dog::stop()
 
         this->_stopMediaPlayer();
 
-        if (m_pVlcInstance)
-        {
-            libvlc_release(m_pVlcInstance);
-            m_pVlcInstance = nullptr;
-        }
+        m_pVlcInstance.reset();
 
         if (m_thread.joinable())
         {
@@ -71,47 +67,22 @@ void Dog::_stopMediaPlayer()
 {
     if (m_pMediaPlayer)
     {
-        libvlc_media_player_stop(m_pMediaPlayer);
-        libvlc_media_player_release(m_pMediaPlayer);
-        m_pMediaPlayer = nullptr;
+        libvlc_media_player_stop(m_pMediaPlayer.get());
+        m_pMediaPlayer.reset();
     }
 }
 
 void Dog::_vlcInit()
 {
-
-    // Create Vlc instance used to play sound
-    m_pVlcInstance = libvlc_new(0, nullptr);
-    if (!m_pVlcInstance)
+    libvlc_instance_t *rawInstance = libvlc_new(0, nullptr);
+    if (rawInstance != nullptr)
     {
-        std::cerr << "Error init libVLC" << std::endl;
+        m_pVlcInstance.reset(rawInstance);
+    }
+    else
+    {
+        Logger::log("Dog::_vlcInit() - Error init libVLC", true);
         throw std::runtime_error("nullptr vlc instance");
-    }
-}
-
-void Dog::_createVlcMedia(const char *filepath)
-{
-
-    // 2. Crea un media
-    libvlc_media_t *media = libvlc_media_new_path(m_pVlcInstance, filepath);
-    if (!media)
-    {
-        std::cerr << "Cannot load file: " << filepath << std::endl;
-        Logger::log(std::string("Dog::_createVlcMedia() - cannot load file:", filepath), true);
-
-        return;
-    }
-
-    // 3. Crea un media player
-    libvlc_media_player_t *player = libvlc_media_player_new_from_media(media);
-    libvlc_media_release(media); // Il media ora è gestito dal media player
-
-    if (!player)
-    {
-        std::cerr << "Cannot create media player: " << filepath << std::endl;
-        Logger::log(std::string("Dog::_createVlcMedia() - Cannot create media player: ", filepath), true);
-
-        return;
     }
 }
 
@@ -148,7 +119,7 @@ void Dog::_thread_func()
 
 void Dog::_playRandomBark()
 {
-    if (m_pMediaPlayer != nullptr && libvlc_media_player_is_playing(m_pMediaPlayer))
+    if (m_pMediaPlayer != nullptr && libvlc_media_player_is_playing(m_pMediaPlayer.get()))
     {
         // Vlc already playing a sound nothing to do
         std::this_thread::sleep_for(std::chrono::milliseconds(THREAD_SLEEP_MILLI));
@@ -160,7 +131,7 @@ void Dog::_playRandomBark()
 
         std::string randAudio = _getRandomAudio();
 
-        libvlc_media_t *media = libvlc_media_new_path(m_pVlcInstance, randAudio.c_str());
+        libvlc_media_t *media = libvlc_media_new_path(m_pVlcInstance.get(), randAudio.c_str());
         if (!media)
         {
             std::cerr << "Cannot load file: " << randAudio.c_str() << std::endl;
@@ -169,11 +140,11 @@ void Dog::_playRandomBark()
             return;
         }
 
-        m_pMediaPlayer = libvlc_media_player_new_from_media(media);
+        libvlc_media_player_t *rawPlayer = libvlc_media_player_new_from_media(media);
 
         libvlc_media_release(media); // player manage media nofrom now on so release
 
-        if (!m_pMediaPlayer)
+        if (rawPlayer == nullptr)
         {
             std::cerr << "Cannot create mediaplayer with media" << randAudio.c_str() << std::endl;
             Logger::log(
@@ -183,14 +154,10 @@ void Dog::_playRandomBark()
             return;
         }
 
-        libvlc_media_player_play(m_pMediaPlayer);
+        m_pMediaPlayer.reset(rawPlayer);
+
+        libvlc_media_player_play(m_pMediaPlayer.get());
     }
-
-    // _waitForAudioToFinish();
-
-    // _removeMediaEndEvent();
-
-    // _stopMediaPlayer();
 }
 
 std::string Dog::_getRandomAudio()
@@ -221,28 +188,4 @@ std::string Dog::_getRandomAudio()
     std::string fileSelezionato = fileAudio[distrib(gen)];
 
     return fileSelezionato;
-}
-
-// Callback chiamato da VLC quando finisce il media
-void Dog::handleMediaEnd(const libvlc_event_t *event, void *data)
-{
-    Dog *dog = static_cast<Dog *>(data);
-    if (dog != nullptr)
-    {
-        std::unique_lock<std::mutex> lock(dog->m_mutex);
-        dog->m_audioFinished = true;
-        dog->m_cv.notify_one();
-    }
-}
-
-void Dog::_waitForAudioToFinish()
-{
-    std::unique_lock<std::mutex> lock(m_mutex);
-    m_cv.wait(lock, [this]() { return m_audioFinished; });
-}
-
-void Dog::_removeMediaEndEvent()
-{
-    libvlc_event_manager_t *em = libvlc_media_player_event_manager(m_pMediaPlayer);
-    libvlc_event_detach(em, libvlc_MediaPlayerEndReached, handleMediaEnd, this);
 }
