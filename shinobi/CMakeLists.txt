@@ -46,9 +46,11 @@ add_executable(my_app
     utils/Audio.cpp
     utils/SensorData.cpp
     utils/Logger.cpp
+    utils/Vlcplayer.cpp
     src/SensorMng.cpp
     src/dog.cpp
     src/ThreadMng.cpp
+    src/Sentinel.cpp
 
 )
 

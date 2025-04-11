@@ -5,20 +5,12 @@
 #include "../utils/SensorData.h"
 #include "../utils/Vlcplayer.h"
 #include "../utils/myGlobals.h"
-#include <atomic>
-#include <condition_variable>
-#include <filesystem>
-#include <iostream>
-#include <memory>
-#include <mutex>
-#include <random>
-#include <thread>
 
-class Dog : public IStartStop
+class Sentinel : public IStartStop
 {
 
   public:
-    explicit Dog();
+    explicit Sentinel();
 
     void start();
 
@@ -26,22 +18,28 @@ class Dog : public IStartStop
 
     bool isRunning();
 
-    ~Dog();
+    ~Sentinel();
 
     // Delete copy and move constructors and assignment operators: Used to prevent Dog to be copied
     // and moved, because it is not thread safe
-    Dog(const Dog &) = delete;
-    Dog &operator=(const Dog &) = delete;
-    Dog(Dog &&) = delete;
-    Dog &operator=(Dog &&) = delete;
+    Sentinel(const Sentinel &) = delete;
+    Sentinel &operator=(const Sentinel &) = delete;
+    Sentinel(Sentinel &&) = delete;
+    Sentinel &operator=(Sentinel &&) = delete;
     // End of
 
   private:
     void _thread_func();
 
+    void _playRandomBark();
+
+    void _stopMediaPlayer();
+
+    void _vlcInit();
+
+    std::string _getRandomAudio();
+
     std::thread m_thread;
     std::atomic<bool> m_bRunning;
     std::shared_ptr<SensorMng> m_pSensorMng;
-    std::shared_ptr<Vlcplayer> m_pVlc;
-    std::string m_dog_audio_folder_path = "audio";
 };
