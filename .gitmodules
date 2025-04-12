@@ -1,3 +1,6 @@
 [submodule "shinobi/extern/imgui"]
 	path = shinobi/extern/imgui
 	url = https://github.com/ocornut/imgui.git
+[submodule "shinobi/extern/tdlib"]
+	path = shinobi/extern/tdlib
+	url = https://github.com/tdlib/td.git
