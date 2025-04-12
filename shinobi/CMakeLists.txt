@@ -12,12 +12,20 @@ set(OpenGL_GL_PREFERENCE GLVND)
 # 1. ImGui come submodule (con il TUO CMakeLists.txt in extern/imgui)
 add_subdirectory(extern/imgui)
 
+# TD lib: Telegram
+find_library(TDLIB_LIBRARY tdjson PATHS "/usr/local/lib")
+find_path(TDLIB_INCLUDE_DIR td/telegram/td_json_client.h PATHS "/usr/local/include")
+if(NOT TDLIB_LIBRARY OR NOT TDLIB_INCLUDE_DIR)
+    message(FATAL_ERROR "TDLib non trovato!")
+endif()
+
 # 2. Find other dependencies
 find_package(glfw3 REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(nlohmann_json 3.0 REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(PkgConfig REQUIRED)
+
 pkg_check_modules(PULSEAUDIO REQUIRED libpulse libpulse-simple)
 pkg_check_modules(GLIB REQUIRED glib-2.0)
 pkg_check_modules(VLC REQUIRED libvlc)
@@ -51,6 +59,8 @@ add_executable(my_app
     src/dog.cpp
     src/ThreadMng.cpp
     src/Sentinel.cpp
+    src/Modes.cpp
+    src/bot.cpp
 
 )
 
@@ -64,6 +74,9 @@ target_link_libraries(my_app PRIVATE
     ${PULSEAUDIO_LIBRARIES}
     ${GLIB_LIBRARIES}
     ${VLC_LIBRARIES} 
+    tdjson 
+    tdjson_static
+    ${TDLIB_LIBRARY}
 )
 
 
@@ -75,6 +88,7 @@ target_include_directories(my_app PRIVATE
     ${PULSEAUDIO_INCLUDE_DIRS}                          # Pulse Audio
     ${GLIB_INCLUDE_DIRS}                                # GLib
     ${VLC_INCLUDE_DIRS} 
+    ${TDLIB_INCLUDE_DIR}
 )
 
 target_compile_options(my_app PRIVATE

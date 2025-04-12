@@ -2,6 +2,7 @@
 #include "../interface/IStartStop.h"
 #include "../utils/myGlobals.h"
 #include "SensorMng.h"
+#include "Sentinel.h"
 #include "dog.h"
 #include <memory>
 #include <vector>
@@ -22,4 +23,5 @@ class ThreadMng
     std::vector<std::pair<AlarmMode, IStartStop &>> m_threads;
     std::shared_ptr<SensorMng> m_pSensorMng;
     Dog m_dog;
+    Sentinel m_sentinel;
 };

@@ -20,3 +20,19 @@ sudo apt install libvlc-dev vlc
 
 
 sudo apt install libvlc-dev libvlccore-dev
+
+
+# telegram
+sudo apt-get update
+sudo apt-get install git make g++ cmake zlib1g-dev libssl-dev gperf php-cli
+
+# Clona TDLib
+git submodule add https://github.com/tdlib/td.git extern/tdlib
+cd td
+
+# Compila
+mkdir build
+cd build
+cmake -DCMAKE_BUILD_TYPE=Release ..
+make -j$(nproc)
+sudo make install  # Opzionale, installa in /usr/local/

@@ -1,19 +1,19 @@
 #pragma once
-#include "Toolbar.h"
 #include "CameraWindow.h"
-#include "SettingWindow.h"
 #include "ModeSelector.h"
-#include <vector>
+#include "SettingWindow.h"
+#include "Toolbar.h"
 #include <memory>
+#include <vector>
 
 class MyWindow
 {
-public:
+  public:
     void initialize();
     void render();
     void shutdown();
 
-private:
+  private:
     // WINDOWs
     Toolbar m_toolbar;
     CameraWindow m_cameraWindow;

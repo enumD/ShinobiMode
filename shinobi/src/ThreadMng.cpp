@@ -1,10 +1,10 @@
 #include "ThreadMng.h"
 
-ThreadMng::ThreadMng() : m_pSensorMng(nullptr), m_dog()
+ThreadMng::ThreadMng() : m_pSensorMng(SensorMng::getInstance()), m_dog(), m_sentinel()
 {
-    m_pSensorMng = SensorMng::getInstance();
     // Add modes to thread manager
     m_threads.emplace_back(std::make_pair(AlarmMode::DOG_MODE, std::ref(m_dog)));
+    m_threads.emplace_back(std::make_pair(AlarmMode::SENTINEL_MODE, std::ref(m_sentinel)));
 }
 
 ThreadMng::~ThreadMng()

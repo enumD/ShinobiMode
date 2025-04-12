@@ -65,6 +65,10 @@
         "semaphore": "cpp",
         "stop_token": "cpp",
         "thread": "cpp",
-        "future": "cpp"
+        "future": "cpp",
+        "csignal": "cpp",
+        "unordered_set": "cpp",
+        "optional": "cpp",
+        "variant": "cpp"
     }
 }

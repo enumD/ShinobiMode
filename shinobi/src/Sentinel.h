@@ -1,24 +1,14 @@
 #pragma once
-#include "../interface/IStartStop.h"
-#include "../src/SensorMng.h"
-#include "../utils/Logger.h"
-#include "../utils/SensorData.h"
-#include "../utils/Vlcplayer.h"
-#include "../utils/myGlobals.h"
+#include "Modes.h"
+#include "bot.h"
 
-class Sentinel : public IStartStop
+class Sentinel : public Modes
 {
 
   public:
     explicit Sentinel();
 
-    void start();
-
-    void stop();
-
-    bool isRunning();
-
-    ~Sentinel();
+    ~Sentinel() override;
 
     // Delete copy and move constructors and assignment operators: Used to prevent Dog to be copied
     // and moved, because it is not thread safe
@@ -26,20 +16,11 @@ class Sentinel : public IStartStop
     Sentinel &operator=(const Sentinel &) = delete;
     Sentinel(Sentinel &&) = delete;
     Sentinel &operator=(Sentinel &&) = delete;
+    void start() override;
+    void stop() override;
     // End of
 
   private:
-    void _thread_func();
-
-    void _playRandomBark();
-
-    void _stopMediaPlayer();
-
-    void _vlcInit();
-
-    std::string _getRandomAudio();
-
-    std::thread m_thread;
-    std::atomic<bool> m_bRunning;
-    std::shared_ptr<SensorMng> m_pSensorMng;
+    void _thread_func() override;
+    std::shared_ptr<Bot> m_pBot;
 };
