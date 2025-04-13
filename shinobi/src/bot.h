@@ -9,6 +9,7 @@
 #include <nlohmann/json.hpp>
 #include <string>
 #include <td/telegram/Client.h>
+#include <td/telegram/Log.h>
 #include <td/telegram/td_api.h>
 #include <td/telegram/td_api.hpp>
 class Bot
@@ -41,6 +42,7 @@ class Bot
 
     std::unique_ptr<td::ClientManager> m_clientMng;
     int32_t m_client_id_;
+    nlohmann::json m_config;
     std::string m_token;
 
     // Shutdown-related members

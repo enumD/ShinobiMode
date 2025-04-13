@@ -1,0 +1,471 @@
+[ 3][t 0][1744486474.200361490][Client.cpp:482]	Created managed client 1
+[ 3][t 0][1744486480.277926921][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[00007fff7c004510] cache_read stream error: cannot pre fill buffer
+[00007fff7c001160] mjpeg demux error: cannot peek
+[ 3][t 0][1744486490.286556482][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744486491.386843442][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486501.396856546][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744486502.497073411][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486512.504876375][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744486513.605168819][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486525.295250177][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744486544.429515600][Client.cpp:573]	Destroy ClientManager
+[ 3][t 0][1744486544.429879903][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 3][t 0][1744486544.429991960][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744486760.123288631][Client.cpp:482]	Created managed client 1
+[ 3][t 0][1744486760.133674621][Client.cpp:383]	Initialize client 1
+[ 3][t 4][1744486760.134461879][Td.cpp:138][#1][!MultiTd]	Create Td with layer 201, database version 14 and version 54 on 4 threads
+[ 3][t 4][1744486760.134587526][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "version"
+  value = optionValueString {
+    value = "1.8.47"
+  }
+}
+[ 3][t 4][1744486760.134637832][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "commit_hash"
+  value = optionValueString {
+    value = "a03a90470d6fca9a5a3db747ba3f3e4a465b5fe7"
+  }
+}
+[ 3][t 4][1744486760.134651660][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateWaitTdlibParameters {
+  }
+}
+[ 1][t 4][1744486760.134678363][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: null
+[ 3][t 0][1744486763.986005783][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486763.986270904][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x5555579ff8d0
+[ 3][t 0][1744486845.331961870][Client.cpp:482]	Created managed client 1
+[ 3][t 0][1744486845.338453531][Client.cpp:383]	Initialize client 1
+[ 3][t 4][1744486845.339380502][Td.cpp:138][#1][!MultiTd]	Create Td with layer 201, database version 14 and version 54 on 4 threads
+[ 3][t 4][1744486845.339550018][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "version"
+  value = optionValueString {
+    value = "1.8.47"
+  }
+}
+[ 3][t 4][1744486845.339624404][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "commit_hash"
+  value = optionValueString {
+    value = "a03a90470d6fca9a5a3db747ba3f3e4a465b5fe7"
+  }
+}
+[ 3][t 4][1744486845.339646577][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateWaitTdlibParameters {
+  }
+}
+[ 1][t 4][1744486845.339686155][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: null
+[ 3][t 0][1744486860.468565940][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486860.468744277][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c001fd0
+[ 3][t 0][1744486899.669218301][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486899.669407844][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002030
+[ 3][t 0][1744486906.297164916][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486906.297348976][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002100
+[00007fff74001160] mjpeg demux error: cannot peek
+[ 1][t 4][1744486940.577394008][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: setTdlibParameters {
+  use_test_dc = false
+  database_directory = "tdlib_db"
+  files_directory = "tdlib_files"
+  database_encryption_key = bytes [0] { }
+  use_file_database = false
+  use_chat_info_database = false
+  use_message_database = true
+  use_secret_chats = false
+  api_id = 15942754
+  api_hash = "f6733382a1f0d7e401e82534cf22d110"
+  system_language_code = "eng"
+  device_model = "Desktop"
+  system_version = ""
+  application_version = "1.0"
+}
+[ 3][t 0][1744486945.032222032][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486955.040891170][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744486956.141287326][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486966.148901224][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744486967.249164819][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486977.256956577][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744486978.357275485][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486988.364912033][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744486989.465132713][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744486999.470699071][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[00007fff90018c90] main input error: ES_OUT_SET_(GROUP_)PCR  is called too late (pts_delay increased to 1000 ms)
+[00007fff90018c90] main input error: ES_OUT_SET_(GROUP_)PCR  is called too late (pts_delay increased to 3425 ms)
+[ 3][t 0][1744487008.436818599][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744487018.444845676][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744487019.545046806][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744487029.552900314][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744487030.653157472][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744487040.660919666][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744487043.405759572][Client.cpp:573]	Destroy ClientManager
+[ 3][t 0][1744487043.405876398][Client.cpp:399]	Close client
+[ 3][t 0][1744487043.405915737][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 3][t 4][1744487043.405947208][Td.cpp:474][#1][!Td]	Receive Td::hangup
+[ 2][t 4][1744487043.405996084][Td.cpp:765][#1][!Td]	Close Td in state 0
+[ 3][t 4][1744487043.406037807][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateClosing {
+  }
+}
+[ 3][t 0][1744487043.406087875][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c001d20
+[ 4][t 4][1744487043.406095981][Td.cpp:491][#1][!Td]	Decrease reference count to 1
+[ 3][t 0][1744487043.406116962][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 4][t 4][1744487043.406139612][Td.cpp:613][#1][!Td]	Decrease request actor count to 0
+[ 4][t 4][1744487043.406179189][Td.cpp:491][#1][!Td]	Decrease reference count to 0
+[ 3][t 4][1744487043.406197786][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateClosed {
+  }
+}
+[ 3][t 4][1744487043.406229257][Td.cpp:601][#1][!Td]	Stop Td
+[ 3][t 0][1744487043.406234741][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002500
+[ 3][t 0][1744487043.406275987][Client.cpp:526]	Release closed client
+[ 3][t 0][1744487043.406324386][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 3][t 0][1744487043.406350374][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744487070.631960868][Client.cpp:482]	Created managed client 1
+[ 3][t 0][1744487070.637133836][Client.cpp:383]	Initialize client 1
+[ 3][t 4][1744487070.638095617][Td.cpp:138][#1][!MultiTd]	Create Td with layer 201, database version 14 and version 54 on 4 threads
+[ 3][t 4][1744487070.638278722][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "version"
+  value = optionValueString {
+    value = "1.8.47"
+  }
+}
+[ 3][t 4][1744487070.638360977][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "commit_hash"
+  value = optionValueString {
+    value = "a03a90470d6fca9a5a3db747ba3f3e4a465b5fe7"
+  }
+}
+[ 3][t 4][1744487070.638388633][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateWaitTdlibParameters {
+  }
+}
+[ 1][t 4][1744487070.638434410][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: null
+[ 3][t 0][1744487074.218228578][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744487074.218602895][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002010
+[ 3][t 0][1744487078.459880828][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744487078.459960937][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002070
+[ 3][t 0][1744487081.158651351][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744487081.158742189][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002140
+[ 1][t 4][1744487084.687014341][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: setTdlibParameters {
+  use_test_dc = false
+  database_directory = "tdlib_db"
+  files_directory = "tdlib_files"
+  database_encryption_key = bytes [0] { }
+  use_file_database = false
+  use_chat_info_database = false
+  use_message_database = true
+  use_secret_chats = false
+  api_id = 15942754
+  api_hash = "f6733382a1f0d7e401e82534cf22d110"
+  system_language_code = "eng"
+  device_model = "Desktop"
+  system_version = ""
+  application_version = "1.0"
+}
+[ 3][t 0][1744487085.687108993][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[00007fff90005340] pulse audio output error: overflow, flushing
+[ 3][t 0][1744487095.696854829][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744487096.797154426][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744487106.804847478][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744487107.905194044][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744487117.912849426][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744487119.013096570][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744487129.020896434][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744487130.121240854][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744487140.128815889][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744487141.678325653][Client.cpp:573]	Destroy ClientManager
+[ 3][t 0][1744487141.678431034][Client.cpp:399]	Close client
+[ 3][t 0][1744487141.678463459][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 3][t 4][1744487141.678494930][Td.cpp:474][#1][!Td]	Receive Td::hangup
+[ 2][t 4][1744487141.678534269][Td.cpp:765][#1][!Td]	Close Td in state 0
+[ 3][t 4][1744487141.678570270][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateClosing {
+  }
+}
+[ 4][t 4][1744487141.678616762][Td.cpp:491][#1][!Td]	Decrease reference count to 1
+[ 4][t 4][1744487141.678634643][Td.cpp:613][#1][!Td]	Decrease request actor count to 0
+[ 4][t 4][1744487141.678651094][Td.cpp:491][#1][!Td]	Decrease reference count to 0
+[ 3][t 4][1744487141.678666591][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateClosed {
+  }
+}
+[ 3][t 4][1744487141.678684473][Td.cpp:601][#1][!Td]	Stop Td
+[ 3][t 0][1744487141.678728342][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c001d90
+[ 3][t 0][1744487141.678756237][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 3][t 0][1744487141.678786993][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002540
+[ 3][t 0][1744487141.678805351][Client.cpp:526]	Release closed client
+[ 3][t 0][1744487141.678822994][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 3][t 0][1744487141.678847312][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744531817.514799833][Client.cpp:482]	Created managed client 1
+[ 3][t 0][1744531817.521965026][Client.cpp:383]	Initialize client 1
+[ 3][t 4][1744531817.526730537][Td.cpp:138][#1][!MultiTd]	Create Td with layer 201, database version 14 and version 54 on 4 threads
+[ 3][t 4][1744531817.536056756][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "version"
+  value = optionValueString {
+    value = "1.8.47"
+  }
+}
+[ 3][t 4][1744531817.540443897][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "commit_hash"
+  value = optionValueString {
+    value = "a03a90470d6fca9a5a3db747ba3f3e4a465b5fe7"
+  }
+}
+[ 3][t 4][1744531817.540466070][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateWaitTdlibParameters {
+  }
+}
+[ 1][t 4][1744531817.541299343][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: null
+[ 3][t 0][1744531824.137906551][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744531824.138336420][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x5555579fcb80
+[ 3][t 0][1744532028.848152637][Client.cpp:482]	Created managed client 1
+[ 3][t 0][1744532028.854515075][Client.cpp:383]	Initialize client 1
+[ 3][t 4][1744532028.855685472][Td.cpp:138][#1][!MultiTd]	Create Td with layer 201, database version 14 and version 54 on 4 threads
+[ 3][t 4][1744532028.855844974][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "version"
+  value = optionValueString {
+    value = "1.8.47"
+  }
+}
+[ 3][t 4][1744532028.855920314][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "commit_hash"
+  value = optionValueString {
+    value = "a03a90470d6fca9a5a3db747ba3f3e4a465b5fe7"
+  }
+}
+[ 3][t 4][1744532028.855944871][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateWaitTdlibParameters {
+  }
+}
+[ 1][t 4][1744532028.855985403][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: null
+[ 3][t 0][1744532040.122703552][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532040.123131990][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff90001fe0
+[ 3][t 0][1744532278.530462026][Client.cpp:482]	Created managed client 1
+[ 3][t 0][1744532278.537523984][Client.cpp:383]	Initialize client 1
+[ 3][t 4][1744532278.538439989][Td.cpp:138][#1][!MultiTd]	Create Td with layer 201, database version 14 and version 54 on 4 threads
+[ 3][t 4][1744532278.538612127][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "version"
+  value = optionValueString {
+    value = "1.8.47"
+  }
+}
+[ 3][t 4][1744532278.538681268][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "commit_hash"
+  value = optionValueString {
+    value = "a03a90470d6fca9a5a3db747ba3f3e4a465b5fe7"
+  }
+}
+[ 3][t 4][1744532278.538705348][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateWaitTdlibParameters {
+  }
+}
+[ 1][t 4][1744532278.538763523][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: null
+[ 3][t 0][1744532284.395605087][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532284.395750284][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x5555578f0d10
+[00007fff6c004510] cache_read stream error: cannot pre fill buffer
+[ 3][t 0][1744532307.944324254][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532307.944485187][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x555557a0f940
+[ 3][t 0][1744532324.766039609][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532324.766192197][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002140
+[00007fff6c001160] mjpeg demux error: cannot peek
+[00007fff6c01f100] mjpeg demux error: cannot peek
+[ 1][t 4][1744532364.651501893][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: setTdlibParameters {
+  use_test_dc = false
+  database_directory = "tdlib_db"
+  files_directory = "tdlib_files"
+  database_encryption_key = bytes [0] { }
+  use_file_database = false
+  use_chat_info_database = false
+  use_message_database = true
+  use_secret_chats = false
+  api_id = 15942754
+  api_hash = "f6733382a1f0d7e401e82534cf22d110"
+  system_language_code = "eng"
+  device_model = "Desktop"
+  system_version = ""
+  application_version = "1.0"
+}
+[ 3][t 0][1744532368.660578012][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532378.669337749][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[00007fff90018e10] main input error: ES_OUT_SET_(GROUP_)PCR  is called too late (pts_delay increased to 1000 ms)
+[00007fff90018e10] main input error: ES_OUT_SET_(GROUP_)PCR  is called too late (pts_delay increased to 1839 ms)
+[ 3][t 0][1744532385.624392271][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532395.625307083][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[00007fff9001a5a0] main input error: ES_OUT_SET_(GROUP_)PCR  is called too late (pts_delay increased to 1000 ms)
+[ 3][t 0][1744532400.059115886][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532410.069303989][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744532411.169535160][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532421.177287578][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744532422.277531385][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532432.286996603][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744532433.387251615][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532443.397316455][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744532444.497562170][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532454.505340099][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744532455.605573415][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532465.613299131][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744532466.713532447][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744532476.721260070][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744532480.031592607][Client.cpp:573]	Destroy ClientManager
+[ 3][t 0][1744532480.031697034][Client.cpp:399]	Close client
+[ 3][t 0][1744532480.031729698][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 3][t 4][1744532480.031756162][Td.cpp:474][#1][!Td]	Receive Td::hangup
+[ 2][t 4][1744532480.031802177][Td.cpp:765][#1][!Td]	Close Td in state 0
+[ 3][t 4][1744532480.031831502][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateClosing {
+  }
+}
+[ 4][t 4][1744532480.031868219][Td.cpp:491][#1][!Td]	Decrease reference count to 1
+[ 3][t 0][1744532480.031866073][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c001de0
+[ 4][t 4][1744532480.031886100][Td.cpp:613][#1][!Td]	Decrease request actor count to 0
+[ 3][t 0][1744532480.031909465][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 4][t 4][1744532480.031923532][Td.cpp:491][#1][!Td]	Decrease reference count to 0
+[ 3][t 4][1744532480.031963825][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateClosed {
+  }
+}
+[ 3][t 4][1744532480.031987905][Td.cpp:601][#1][!Td]	Stop Td
+[ 3][t 0][1744532480.031992912][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002540
+[ 3][t 0][1744532480.032026529][Client.cpp:526]	Release closed client
+[ 3][t 0][1744532480.032047033][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 3][t 0][1744532480.032068967][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744533002.843337297][Client.cpp:482]	Created managed client 1
+[ 3][t 0][1744533002.850121498][Client.cpp:383]	Initialize client 1
+[ 3][t 4][1744533002.850787162][Td.cpp:138][#1][!MultiTd]	Create Td with layer 201, database version 14 and version 54 on 4 threads
+[ 3][t 4][1744533002.850905895][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "version"
+  value = optionValueString {
+    value = "1.8.47"
+  }
+}
+[ 3][t 4][1744533002.850952625][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "commit_hash"
+  value = optionValueString {
+    value = "a03a90470d6fca9a5a3db747ba3f3e4a465b5fe7"
+  }
+}
+[ 3][t 4][1744533002.850991249][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateWaitTdlibParameters {
+  }
+}
+[ 1][t 4][1744533002.851017236][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: null
+[ 3][t 0][1744533009.259210586][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744533009.259633541][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c001fd0
+[00007fff6c004510] cache_read stream error: cannot pre fill buffer
+[ 3][t 0][1744533024.319567441][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744533024.319701433][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002030
+[ 3][t 0][1744533027.728013277][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744533027.728332996][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002100
+[ 1][t 4][1744533033.245696544][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: setTdlibParameters {
+  use_test_dc = false
+  database_directory = "tdlib_db"
+  files_directory = "tdlib_files"
+  database_encryption_key = bytes [0] { }
+  use_file_database = false
+  use_chat_info_database = false
+  use_message_database = true
+  use_secret_chats = false
+  api_id = 15942754
+  api_hash = "f6733382a1f0d7e401e82534cf22d110"
+  system_language_code = "eng"
+  device_model = "Desktop"
+  system_version = ""
+  application_version = "1.0"
+}
+[00007fff6c001160] mjpeg demux error: cannot peek
+[ 3][t 0][1744533034.245804071][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744533044.254123210][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744533045.314598798][Client.cpp:573]	Destroy ClientManager
+[ 3][t 0][1744533045.314796447][Client.cpp:399]	Close client
+[ 3][t 4][1744533045.314902782][Td.cpp:474][#1][!Td]	Receive Td::hangup
+[ 2][t 4][1744533045.314938306][Td.cpp:765][#1][!Td]	Close Td in state 0
+[ 3][t 4][1744533045.314995527][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateClosing {
+  }
+}
+[ 4][t 4][1744533045.315075159][Td.cpp:491][#1][!Td]	Decrease reference count to 1
+[ 4][t 4][1744533045.315109968][Td.cpp:613][#1][!Td]	Decrease request actor count to 0
+[ 4][t 4][1744533045.315129756][Td.cpp:491][#1][!Td]	Decrease reference count to 0
+[ 3][t 4][1744533045.315149307][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateClosed {
+  }
+}
+[ 3][t 4][1744533045.315180301][Td.cpp:601][#1][!Td]	Stop Td
+[ 3][t 0][1744533045.315288782][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 3][t 0][1744533045.315391302][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c001d20
+[ 3][t 0][1744533045.315431833][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 3][t 0][1744533045.315470695][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x7fff8c002500
+[ 3][t 0][1744533045.315509319][Client.cpp:526]	Release closed client
+[ 3][t 0][1744533045.315558195][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 0.100000
+[ 3][t 0][1744533045.315613508][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 (nil)
+[ 3][t 0][1744533176.466055393][Client.cpp:482]	Created managed client 1
+[ 3][t 0][1744533176.473032951][Client.cpp:383]	Initialize client 1
+[ 3][t 4][1744533176.474262714][Td.cpp:138][#1][!MultiTd]	Create Td with layer 201, database version 14 and version 54 on 4 threads
+[ 3][t 4][1744533176.474534034][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "version"
+  value = optionValueString {
+    value = "1.8.47"
+  }
+}
+[ 3][t 4][1744533176.474721193][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "commit_hash"
+  value = optionValueString {
+    value = "a03a90470d6fca9a5a3db747ba3f3e4a465b5fe7"
+  }
+}
+[ 3][t 4][1744533176.474760532][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateWaitTdlibParameters {
+  }
+}
+[ 1][t 4][1744533176.474825620][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: null
+[ 3][t 0][1744535908.802346229][Client.cpp:482]	Created managed client 1
+[ 3][t 0][1744535908.810956716][Client.cpp:383]	Initialize client 1
+[ 3][t 4][1744535908.811933279][Td.cpp:138][#1][!MultiTd]	Create Td with layer 201, database version 14 and version 54 on 4 threads
+[ 3][t 4][1744535908.812114477][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "version"
+  value = optionValueString {
+    value = "1.8.47"
+  }
+}
+[ 3][t 4][1744535908.812176942][Td.cpp:1348][#1][!Td][&td_requests]	Sending update: updateOption {
+  name = "commit_hash"
+  value = optionValueString {
+    value = "a03a90470d6fca9a5a3db747ba3f3e4a465b5fe7"
+  }
+}
+[ 3][t 4][1744535908.812195777][Td.cpp:1355][#1][!Td][&td_requests]	Sending update: updateAuthorizationState {
+  authorization_state = authorizationStateWaitTdlibParameters {
+  }
+}
+[ 1][t 4][1744535908.812231302][Td.cpp:274][#1][!Td]	Ignore request with ID == 0: null
+[ 3][t 0][1744535913.771351337][Client.cpp:280][&td_requests]	Begin to wait for updates with timeout 10.000000
+[ 3][t 0][1744535913.771876811][Client.cpp:293][&td_requests]	End to wait for updates, returning object 0 0x5555579fefc0

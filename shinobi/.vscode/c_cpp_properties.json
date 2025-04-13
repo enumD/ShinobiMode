@@ -6,7 +6,7 @@
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/extern/imgui",
                 "${workspaceFolder}/extern/imgui/backends",
-                "${workspaceFolder}/extern/tdlib/td",
+                "/usr/local/include/td",
                 "/usr/include/opencv4",
                 "/usr/include/pulse",
                 "/usr/include/vlc"

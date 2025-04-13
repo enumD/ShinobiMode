@@ -141,3 +141,4 @@ shinobi/build/CMakeFiles/rules.ninja
 shinobi/imgui.ini
 shinobi/token.txt
 shinobi/tdlib_files/td_cinfig.json
+shinobi/utils/td_example.cpp

@@ -6,6 +6,8 @@ std::shared_ptr<Bot> Bot::getInstance()
 { // Create a new SensorMng only is not exist yet
     if (!m_instance)
     {
+        td::Log::set_verbosity_level(4);
+        td::Log::set_file_path("tdlib_log.txt");
         m_instance = std::shared_ptr<Bot>(new Bot());
     }
     return m_instance;
@@ -13,7 +15,7 @@ std::shared_ptr<Bot> Bot::getInstance()
 
 Bot::~Bot() { this->shutdown(); }
 
-Bot::Bot() : m_clientMng(std::make_unique<td::ClientManager>()), m_client_id_(m_clientMng->create_client_id()), m_token("")
+Bot::Bot() : m_clientMng(std::make_unique<td::ClientManager>()), m_client_id_(m_clientMng->create_client_id()), m_token(""), m_config()
 {
     try
     {
@@ -28,20 +30,9 @@ Bot::Bot() : m_clientMng(std::make_unique<td::ClientManager>()), m_client_id_(m_
             throw std::runtime_error("Failed to open config file");
         }
 
-        nlohmann::json config;
-        config_file >> config;
+        config_file >> m_config;
 
-        auto params = td::td_api::make_object<td::td_api::setTdlibParameters>();
-
-        params->api_id_ = config["api_id"];
-        params->api_hash_ = config["api_hash"].get<std::string>();
-        params->database_directory_ = config["database_directory"].get<std::string>();
-        params->use_test_dc_ = config["use_test_dc"];
-        params->files_directory_ = config["files_directory"].get<std::string>();
-        params->system_language_code_ = config["system_language_code"].get<std::string>();
-        params->device_model_ = config["device_model"].get<std::string>();
-        params->application_version_ = config["application_version"].get<std::string>();
-        params->use_message_database_ = true; // Opzionale, ma consigliato
+        m_clientMng->send(m_client_id_, 0, nullptr);
     }
     catch (const std::exception &e)
     {
@@ -64,6 +55,9 @@ void Bot::start()
     if (m_bRunning == false)
     {
         m_bRunning = true;
+
+        std::lock_guard<std::mutex> lock(m_instance->m_shutdown_mutex);
+        m_instance->m_shutdown_requested = false;
 
         // Start thread
         m_thread = std::thread(&Bot::run, this);
@@ -113,10 +107,43 @@ void Bot::shutdown()
 void Bot::handleAuthorization(td::ClientManager::Response &response)
 {
     auto update = td::td_api::move_object_as<td::td_api::updateAuthorizationState>(response.object);
+    auto auth_state = std::move(update->authorization_state_);
 
-    if (update->authorization_state_->get_id() == td::td_api::authorizationStateWaitPhoneNumber::ID)
+    if (auth_state->get_id() == td::td_api::authorizationStateWaitTdlibParameters::ID)
+    {
+        auto params = td::td_api::make_object<td::td_api::setTdlibParameters>();
+
+        params->api_id_ = m_config["api_id"];
+        params->api_hash_ = m_config["api_hash"].get<std::string>();
+        params->database_directory_ = m_config["database_directory"].get<std::string>();
+        params->use_test_dc_ = m_config["use_test_dc"];
+        params->files_directory_ = m_config["files_directory"].get<std::string>();
+        params->system_language_code_ = m_config["system_language_code"].get<std::string>();
+        params->device_model_ = m_config["device_model"].get<std::string>();
+        params->application_version_ = m_config["application_version"].get<std::string>();
+        params->use_message_database_ = true; // Opzionale, ma consigliato
+
+        // After creating params in constructor:
+        m_clientMng->send(m_client_id_, 0, std::move(params));
+    }
+
+    else if (auth_state->get_id() == td::td_api::authorizationStateWaitPhoneNumber::ID)
     {
         authenticateBot();
+    }
+    else if (auth_state->get_id() == td::td_api::authorizationStateReady::ID)
+    {
+        m_is_authorized = true;
+        std::cout << "Authorization completed!" << std::endl;
+    }
+    else if (auth_state->get_id() == td::td_api::authorizationStateClosed::ID)
+    {
+        std::cout << "Authorization closed!" << std::endl;
+        shutdown();
+    }
+    else
+    {
+        std::cerr << "Unhandled authorization state: " << auth_state->get_id() << std::endl;
     }
 }
 
@@ -145,17 +172,26 @@ void Bot::run()
         }
 
         auto response = m_clientMng->receive(10.0);
-        if (!response.object)
-            continue;
 
-        // Prima gestisci autorizzazione
-        if (response.object->get_id() == td::td_api::updateAuthorizationState::ID)
+        if (!response.object)
         {
-            handleAuthorization(response);
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
             continue;
         }
 
-        if (response.object->get_id() == td::td_api::updateNewMessage::ID)
+        // Prima gestisci autorizzazione
+
+        auto res = response.object->get_id();
+
+        std::cout << "Ho ricevuto: " << res << " da : " << response.client_id << ". Con request: " << response.request_id << std::endl;
+
+        if (response.object->get_id() == td::td_api::updateAuthorizationState::ID)
+        {
+            handleAuthorization(response);
+
+            continue;
+        }
+        else if (response.object->get_id() == td::td_api::updateNewMessage::ID)
         {
             auto update = td::td_api::move_object_as<td::td_api::updateNewMessage>(response.object);
             auto &message = *update->message_;
@@ -169,7 +205,7 @@ void Bot::run()
             }
         }
 
-        std::this_thread::sleep_for(std::chrono::milliseconds(10000000));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
     }
 }
 
