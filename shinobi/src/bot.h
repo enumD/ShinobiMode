@@ -4,6 +4,7 @@
 #include <condition_variable>
 #include <cstdlib> // per std::getenv
 #include <fstream>
+#include <future>
 #include <iostream>
 #include <mutex>
 #include <nlohmann/json.hpp>
@@ -12,12 +13,32 @@
 #include <td/telegram/Log.h>
 #include <td/telegram/td_api.h>
 #include <td/telegram/td_api.hpp>
+
+// overloaded
+namespace detail
+{
+template <class... Fs> struct overload;
+
+template <class F> struct overload<F> : public F
+{
+    explicit overload(F f) : F(f) {}
+};
+template <class F, class... Fs> struct overload<F, Fs...> : public overload<F>, public overload<Fs...>
+{
+    overload(F f, Fs... fs) : overload<F>(f), overload<Fs...>(fs...) {}
+    using overload<F>::operator();
+    using overload<Fs...>::operator();
+};
+} // namespace detail
+
+template <class... F> auto overloaded(F... f) { return detail::overload<F...>(f...); }
+
+namespace td_api = td::td_api;
 class Bot
 {
   public:
-    static std::shared_ptr<Bot> getInstance();
     ~Bot();
-
+    static std::shared_ptr<Bot> getInstance();
     // Delete copy and move constructors and assignment operators: Used to prevent Bot to be copied
     // and moved, because it is not thread safe
     Bot(const Bot &) = delete;
@@ -26,33 +47,64 @@ class Bot
     Bot &operator=(Bot &&) = delete;
     // End of
 
-    std::string getTokenFromFile();
-
-    void sendMessage(int64_t chat_id, const std::string &text);
-    void handleAuthorization(td::ClientManager::Response &response);
-    void authenticateBot();
-
     void start();
+    void run();
     void shutdown();
     bool isRunning();
+    void clearHandlers();
+    std::future<td_api::object_ptr<td_api::message>> send_message_async(int64_t chat_id, const std::string &text, int64_t reply_to_message_id = 0);
 
   private:
-    void run();
     Bot();
 
-    std::unique_ptr<td::ClientManager> m_clientMng;
-    int32_t m_client_id_;
-    nlohmann::json m_config;
-    std::string m_token;
-
-    // Shutdown-related members
-    std::atomic<bool> m_shutdown_requested{false};
-    std::mutex m_shutdown_mutex;
-    std::condition_variable m_shutdown_cv;
-
-    // Singleton instance
-    static std::shared_ptr<Bot> m_instance;
-    std::atomic<bool> m_is_authorized{false};
+    void send_query(td_api::object_ptr<td_api::Function> f, std::function<void(td_api::object_ptr<td_api::Object>)> handler);
     std::thread m_thread;
     std::atomic<bool> m_bRunning;
+    std::mutex m_lock;
+
+    static std::shared_ptr<Bot> m_instance;
+    std::unique_ptr<td::ClientManager> m_client_manager;
+    std::int32_t m_client_id_{0};
+
+    td_api::object_ptr<td_api::AuthorizationState> authorization_state_;
+    bool are_authorized_{false};
+    bool need_restart_{false};
+    std::uint64_t current_query_id_{0};
+    std::uint64_t authentication_query_id_{0};
+
+    std::map<std::uint64_t, std::function<void(td_api::object_ptr<td_api::Object>)>> handlers_;
+
+    std::map<std::int64_t, td_api::object_ptr<td_api::user>> users_;
+
+    std::map<std::int64_t, std::string> chat_title_;
+
+  private:
+    std::uint64_t next_query_id() { return ++current_query_id_; }
+
+    void check_authentication_error(td_api::object_ptr<td_api::Object> object);
+    auto create_authentication_query_handler();
+
+    void on_authorization_state_update();
+    void process_update(td_api::object_ptr<td_api::Object> update);
+    void process_response(td::ClientManager::Response response);
+
+    std::string get_user_name(std::int64_t user_id) const
+    {
+        auto it = users_.find(user_id);
+        if (it == users_.end())
+        {
+            return "unknown user";
+        }
+        return it->second->first_name_ + " " + it->second->last_name_;
+    }
+
+    std::string get_chat_title(std::int64_t chat_id) const
+    {
+        auto it = chat_title_.find(chat_id);
+        if (it == chat_title_.end())
+        {
+            return "unknown chat";
+        }
+        return it->second;
+    }
 };

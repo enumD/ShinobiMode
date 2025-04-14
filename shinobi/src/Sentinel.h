@@ -23,4 +23,9 @@ class Sentinel : public Modes
   private:
     void _thread_func() override;
     std::shared_ptr<Bot> m_pBot;
+
+    void _signalToTelegram();
+    void _autoMode();
+    int m_countTo = 6; // 6 -> 3 seconds - 12 -> 6 seconds
+    std::vector<int> m_vCount;
 };

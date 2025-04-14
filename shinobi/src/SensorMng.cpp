@@ -13,14 +13,16 @@ SensorMng::SensorMng() : m_bRunning(false)
 
 SensorMng::~SensorMng()
 {
+    stop();
+
     if (m_sensors.size() > 0)
     {
         m_sensors.clear();
     }
 
-    if (m_thread.joinable())
+    if (m_instance)
     {
-        stop();
+        m_instance.reset();
     }
 }
 
@@ -74,10 +76,10 @@ void SensorMng::start()
 /// @return Last SensorData Available
 std::vector<SensorData> SensorMng::getCurrentData()
 {
-    std::vector<SensorData> tmpVector;
-
     // Acquire lock
     std::lock_guard<std::mutex> guard(m_lock);
+
+    std::vector<SensorData> tmpVector;
 
     for (auto i = 0; i < m_sensors.size(); i++)
     {

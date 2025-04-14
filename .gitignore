@@ -142,3 +142,7 @@ shinobi/imgui.ini
 shinobi/token.txt
 shinobi/tdlib_files/td_cinfig.json
 shinobi/utils/td_example.cpp
+shinobi/tdlib/db.sqlite
+shinobi/tdlib/db.sqlite-shm
+shinobi/tdlib/db.sqlite-wal
+shinobi/tdlib/td.binlog
