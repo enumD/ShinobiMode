@@ -89,6 +89,14 @@ std::vector<SensorData> SensorMng::getCurrentData()
     return tmpVector;
 }
 
+bool SensorMng::isRunning()
+{
+
+    std::lock_guard<std::mutex> guard(m_lock);
+    bool res = m_bRunning;
+    return res;
+}
+
 void SensorMng::sensorReaderThread()
 {
     while (m_bRunning == true)

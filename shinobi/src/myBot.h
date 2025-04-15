@@ -34,6 +34,7 @@ class MyBot
     void start();
     void stop();
     bool isRunning();
+    void deleteWaitingReplyFromSender();
 
   private:
     MyBot();
@@ -52,7 +53,7 @@ class MyBot
     static size_t writeCallback(char *ptr, size_t size, size_t nmemb, void *userdata);
     std::string sendMessageInternal(const std::string &chat_id, const std::string &text);
     std::string getUpdatesInternal();
-
+    void saveLastUpdateToFile(const std::string &filename);
     void pollingLoop();
 
     std::string getTokenFromFile();

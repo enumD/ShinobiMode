@@ -19,6 +19,7 @@ class MyWindow
     CameraWindow m_cameraWindow;
     SettingsWindow m_settingsWindow;
     ModeSelector m_modeSelector;
+    AlarmMode m_lastMode = AlarmMode::NUM_OF_ALARM_MODE;
 
     enum class ActiveWindow
     {
@@ -30,7 +31,7 @@ class MyWindow
     ActiveWindow m_activeWindow = ActiveWindow::NONE;
 
     void setupToolbar();
-
+    void renderToolbar();
     void renderMenu();
     void renderContent();
 };

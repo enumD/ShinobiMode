@@ -1,6 +1,8 @@
 #pragma once
 #include "Modes.h"
 #include "myBot.h"
+#include <optional>
+
 
 class Sentinel : public Modes
 {
@@ -26,6 +28,8 @@ class Sentinel : public Modes
 
     void _signalToTelegram();
     void _autoMode();
-    int m_countTo = 6; // 6 -> 3 seconds - 12 -> 6 seconds
+    void performUserAction(const std::string &action);
+    int m_countTo = 2; // 6 -> 3 seconds - 12 -> 6 seconds
     std::vector<int> m_vCount;
+    SentinelModes m_myMode;
 };

@@ -45,6 +45,11 @@ void ThreadMng::SetThread(AlarmMode Mode)
         // {
         //     m_sensorMng.stop();
         // }
+        {
+            std::lock_guard<std::mutex> guard(m_lock);
+
+            m_selectedMode = Mode;
+        }
 
         auto istart = -1;
         for (auto i = 0; i < m_threads.size(); i++)
@@ -67,4 +72,13 @@ void ThreadMng::SetThread(AlarmMode Mode)
         std::cerr << e.what() << '\n';
         Logger::log(e.what());
     }
+}
+
+AlarmMode ThreadMng::GetMode()
+{
+
+    std::lock_guard<std::mutex> guard(m_lock);
+
+    AlarmMode alarm = m_selectedMode;
+    return alarm;
 }

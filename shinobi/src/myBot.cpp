@@ -5,7 +5,7 @@ using json = nlohmann::json;
 
 std::shared_ptr<MyBot> MyBot::m_instance = nullptr;
 
-MyBot::MyBot() : m_botToken(getTokenFromFile()), last_update_id_(0), m_bRunning(false), m_chatId("7730902880") {}
+MyBot::MyBot() : m_botToken(getTokenFromFile()), last_update_id_(0), m_bRunning(false), m_chatId("7097571880") {}
 
 MyBot::~MyBot()
 {
@@ -77,6 +77,12 @@ void MyBot::stop()
 
 bool MyBot::isRunning() { return m_bRunning; }
 
+void MyBot::deleteWaitingReplyFromSender()
+{
+    std::lock_guard<std::mutex> guard(m_lock);
+    waiting_replies_.erase(m_chatId);
+}
+
 void MyBot::thread_func()
 {
     try
@@ -100,6 +106,7 @@ void MyBot::pollingLoop()
 {
 
     std::string response = getUpdatesInternal();
+
     try
     {
         auto parsed = json::parse(response);
@@ -113,8 +120,8 @@ void MyBot::pollingLoop()
                     auto msg = update["message"];
                     std::string text = msg["text"];
                     auto tete = msg["chat"]["id"];
-                    m_chatId = tete.is_string() ? tete.get<std::string>() : std::to_string(tete.get<int>());
-                    std::cerr << "Chat ID is: " << m_chatId << std::endl;
+                    m_chatId = tete.is_string() ? tete.get<std::string>() : std::to_string(tete.get<int64_t>());
+                    std::cerr << "Chat ID is: " << m_chatId << " Message: " << text << std::endl;
 
                     std::lock_guard<std::mutex> guard(m_lock);
                     auto it = waiting_replies_.find(m_chatId);
@@ -173,18 +180,97 @@ std::string MyBot::sendMessageInternal(const std::string &chat_id, const std::st
         std::ostringstream url;
         url << "https://api.telegram.org/bot" << m_botToken << "/sendMessage";
 
-        std::ostringstream data;
-        data << "chat_id=" << chat_id << "&text=" << curl_easy_escape(curl, text.c_str(), text.length());
+        // Properly escape all components
+        char *escaped_text = curl_easy_escape(curl, text.c_str(), text.length());
+        char *escaped_chat_id = curl_easy_escape(curl, chat_id.c_str(), chat_id.length());
 
+        std::string post_fields = "chat_id=" + std::string(escaped_chat_id) + "&text=" + std::string(escaped_text);
+
+        curl_free(escaped_text);
+        curl_free(escaped_chat_id);
+
+        std::cerr << "Sending: " << text << ". To chat id: " << chat_id << std::endl;
+
+        // Set curl options
         curl_easy_setopt(curl, CURLOPT_URL, url.str().c_str());
-        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.str().c_str());
+        curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post_fields.c_str());
         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &MyBot::writeCallback);
         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
 
-        curl_easy_perform(curl);
+        // Add headers
+        struct curl_slist *headers = nullptr;
+        headers = curl_slist_append(headers, "Content-Type: application/x-www-form-urlencoded");
+        curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+        CURLcode res = curl_easy_perform(curl);
+        if (res != CURLE_OK)
+        {
+            std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+        }
+        else
+        {
+            std::cerr << "Response: " << response << std::endl;
+        }
+
+        curl_slist_free_all(headers);
         curl_easy_cleanup(curl);
     }
     return response;
+}
+
+
+// std::string MyBot::sendMessageInternal(const std::string &chat_id, const std::string &text)
+// {
+//     std::string response;
+//     CURL *curl = curl_easy_init();
+//     if (curl)
+//     {
+//         std::ostringstream url;
+//         url << "https://api.telegram.org/bot" << m_botToken << "/sendMessage";
+
+//         std::ostringstream data;
+//         data << "chat_id=" << chat_id << "&text=" << curl_easy_escape(curl, text.c_str(), text.length());
+//         std::cerr << "Sending: " << text << ". To chat id: " << chat_id << std::endl;
+
+//         curl_easy_setopt(curl, CURLOPT_URL, url.str().c_str());
+//         curl_easy_setopt(curl, CURLOPT_POSTFIELDS, data.str().c_str());
+//         curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, &MyBot::writeCallback);
+//         curl_easy_setopt(curl, CURLOPT_WRITEDATA, &response);
+
+//         CURLcode res = curl_easy_perform(curl);
+//         if (res != CURLE_OK)
+//         {
+//             std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+//         }
+//         else
+//         {
+//             std::cerr << "Response: " << response << std::endl;
+//         }
+//         curl_easy_cleanup(curl);
+//     }
+//     return response;
+// }
+
+void MyBot::saveLastUpdateToFile(const std::string &response)
+{
+
+    if (response.empty() == false)
+    {
+        std::ofstream outFile("jsooon.txt");
+        if (outFile.is_open())
+        {
+            outFile << response;
+            outFile.close();
+            std::cout << "Update saved to "
+                      << "json.txt" << std::endl;
+        }
+        else
+        {
+            std::cerr << "Failed to open file "
+                      << "json.txt"
+                      << " for writing." << std::endl;
+        }
+    }
 }
 
 
@@ -206,6 +292,7 @@ std::future<std::string> MyBot::SendMessageAsync(const std::string &text)
     sendMessageInternal(m_chatId, text);
     return future;
 }
+
 
 std::string MyBot::getTokenFromFile()
 {

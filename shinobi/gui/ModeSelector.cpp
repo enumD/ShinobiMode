@@ -6,10 +6,7 @@ void ModeSelector::init()
     m_bInit = true;
 
     // Initialize available modes
-    m_modes = {{AlarmMode::NO_MODE, false},
-               {AlarmMode::DOG_MODE, false},
-               {AlarmMode::SENTINEL_MODE, false},
-               {AlarmMode::SHINOBI_MODE, false}};
+    m_modes = {{AlarmMode::NO_MODE, false}, {AlarmMode::DOG_MODE, false}, {AlarmMode::SENTINEL_MODE, false}, {AlarmMode::SHINOBI_MODE, false}};
 
     // Select first mode by default
     if (!m_modes.empty())
@@ -66,8 +63,7 @@ void ModeSelector::render()
 
         // Show state (On/Off)
         ImGui::SameLine();
-        ImGui::TextColored(m_modes[i].second ? ImVec4(0, 1, 0, 1) : ImVec4(1, 0, 0, 1),
-                           m_modes[i].second ? "On" : "Off");
+        ImGui::TextColored(m_modes[i].second ? ImVec4(0, 1, 0, 1) : ImVec4(1, 0, 0, 1), m_modes[i].second ? "On" : "Off");
     }
 
     // Restore the original padding after the radio buttons
@@ -85,4 +81,11 @@ void ModeSelector::render()
     ImGui::EndChild();
 }
 
-AlarmMode ModeSelector::GetSelectedMode() const { return m_selectedMode; }
+AlarmMode ModeSelector::GetSelectedMode()
+{
+
+    AlarmMode mode = m_threadMng.GetMode();
+
+
+    return mode;
+}

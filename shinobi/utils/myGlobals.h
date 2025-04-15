@@ -17,6 +17,15 @@ enum class AlarmMode
     NUM_OF_ALARM_MODE
 };
 
+
+enum class SentinelModes
+{
+    QUITE = 0,
+    COUNTING,
+    ALARM,
+    NUM_OF_SENTINEL_MODES
+};
+
 inline std::string AlarmMode_ToString(AlarmMode mode)
 {
     switch (mode)

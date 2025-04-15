@@ -25,7 +25,7 @@ class SensorMng
     ~SensorMng();
 
     std::vector<SensorData> getCurrentData();
-
+    bool isRunning();
     // Disable copy and moving cause is a singleton
     SensorMng(const SensorMng &) = delete;
     SensorMng &operator=(const SensorMng &) = delete;

@@ -18,10 +18,13 @@ class ThreadMng
     void Init();
     void Terminate();
     void SetThread(AlarmMode Mode);
+    AlarmMode GetMode();
 
   private:
     std::vector<std::pair<AlarmMode, IStartStop &>> m_threads;
     std::shared_ptr<SensorMng> m_pSensorMng;
     Dog m_dog;
     Sentinel m_sentinel;
+    AlarmMode m_selectedMode;
+    std::mutex m_lock;
 };

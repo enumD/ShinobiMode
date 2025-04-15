@@ -16,7 +16,7 @@ class ModeSelector
 
     void render();
 
-    AlarmMode GetSelectedMode() const;
+    AlarmMode GetSelectedMode();
 
   private:
     AlarmMode m_selectedMode = AlarmMode::NO_MODE;

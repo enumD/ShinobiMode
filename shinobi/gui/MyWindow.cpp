@@ -1,6 +1,6 @@
 #include "MyWindow.h"
-#include "imgui.h"
 #include "../utils/Notification.h"
+#include "imgui.h"
 
 void MyWindow::initialize()
 {
@@ -17,11 +17,35 @@ void MyWindow::setupToolbar()
 {
     // Icon on toolbar are fixed ordering, to ensure fast looking for something on or no:
     // Add
-    m_toolbar.AddIcon("home", "SHINOBI ON", true, [this]
-                      { Notification::Show("Hai cliccato sulla home", Notification::Level::SUCCESS); });
+    m_toolbar.AddIcon("mode", "SHINOBI ON", true, [this] { Notification::Show("To enable/disable a mode please use the relative window", Notification::Level::INFO); });
 
-    m_toolbar.AddIcon("settings", "⚙️", true, [this]
-                      { Notification::Show("Hai cliccato su setting", Notification::Level::SUCCESS); });
+    m_toolbar.AddIcon("sensor",
+                      "SENSOR MNG",
+                      true,
+                      [this]
+                      {
+                          auto sensorMng = SensorMng::getInstance();
+                          if (sensorMng)
+                          {
+                              if (sensorMng->isRunning())
+                              {
+                                  sensorMng->stop();
+                                  Notification::Show("Sensor Disabled", Notification::Level::INFO);
+                                  std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                                  m_toolbar.SetIconBgColor("sensor", ImVec4(0.0f, 0.0f, 0.0f, 0.0f));
+                              }
+                              else
+                              {
+                                  sensorMng->start();
+                                  Notification::Show("Sensor Enabled", Notification::Level::SUCCESS);
+                                  std::this_thread::sleep_for(std::chrono::milliseconds(500));
+                                  m_toolbar.SetIconBgColor("sensor", ImVec4(0.0f, 0.5f, 0.0f, 0.6f));
+                              }
+                          }
+                      });
+
+    // Sensor Mng Start with ThreadMng for now so keep it green TODO
+    m_toolbar.SetIconBgColor("sensor", ImVec4(0.0f, 0.5f, 0.0f, 0.6f));
 }
 
 void MyWindow::render()
@@ -29,14 +53,11 @@ void MyWindow::render()
     // Finestra principale che occupa tutto lo schermo
     ImGui::SetNextWindowPos(ImVec2(0, 0));
     ImGui::SetNextWindowSize(ImGui::GetIO().DisplaySize);
-    ImGui::Begin("My Window", nullptr,
-                 ImGuiWindowFlags_NoTitleBar |
-                     ImGuiWindowFlags_NoResize |
-                     ImGuiWindowFlags_NoMove |
-                     ImGuiWindowFlags_NoScrollbar |
-                     ImGuiWindowFlags_NoBringToFrontOnFocus);
+    ImGui::Begin("My Window", nullptr, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoScrollbar | ImGuiWindowFlags_NoBringToFrontOnFocus);
 
-    // 1. Render della toolbar fissa in alto
+
+    renderToolbar();
+
     const float toolbar_height = 40.0f;
     ImGui::BeginChild("Toolbar", ImVec2(0, toolbar_height), false, ImGuiWindowFlags_NoScrollbar);
     m_toolbar.Draw();
@@ -60,6 +81,44 @@ void MyWindow::render()
 
     ImGui::End(); // End MyWindow
 }
+
+
+void MyWindow::renderToolbar()
+{
+    auto modeSelected = m_modeSelector.GetSelectedMode();
+    if (modeSelected != m_lastMode)
+    {
+        m_lastMode = modeSelected;
+
+        if (modeSelected == AlarmMode::NO_MODE || modeSelected == AlarmMode::NUM_OF_ALARM_MODE)
+        {
+            m_toolbar.SetIconText("mode", "NO MODE");
+            m_toolbar.SetIconTextColor("mode", ImVec4(1, 1, 1, 1));
+            m_toolbar.SetIconBgColor("mode", ImVec4(0, 0, 0, 0));
+        }
+        else if (modeSelected == AlarmMode::DOG_MODE)
+        {
+            m_toolbar.SetIconText("mode", "DOG MODE");
+            m_toolbar.SetIconTextColor("mode", ImVec4(1, 1, 1, 1));
+            m_toolbar.SetIconBgColor("mode", ImVec4(0.0f, 0.5f, 0.0f, 0.6f));
+        }
+        else if (modeSelected == AlarmMode::SENTINEL_MODE)
+        {
+            m_toolbar.SetIconText("mode", "SENTINELL MODE");
+            m_toolbar.SetIconTextColor("mode", ImVec4(1, 1, 1, 1));
+
+            m_toolbar.SetIconBgColor("mode", ImVec4(0.0f, 0.5f, 0.0f, 0.6f));
+        }
+        else if (modeSelected == AlarmMode::SHINOBI_MODE)
+        {
+            m_toolbar.SetIconText("mode", "SHINOBI MODE");
+            m_toolbar.SetIconTextColor("mode", ImVec4(1, 1, 1, 1));
+
+            m_toolbar.SetIconBgColor("mode", ImVec4(0.0f, 0.5f, 0.0f, 0.6f));
+        }
+    }
+}
+
 
 void MyWindow::renderMenu()
 {
