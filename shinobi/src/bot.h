@@ -62,6 +62,7 @@ class Bot
     std::atomic<bool> m_bRunning;
     std::mutex m_lock;
 
+    int bot_user_id_;
     static std::shared_ptr<Bot> m_instance;
     std::unique_ptr<td::ClientManager> m_client_manager;
     std::int32_t m_client_id_{0};
@@ -69,7 +70,7 @@ class Bot
     td_api::object_ptr<td_api::AuthorizationState> authorization_state_;
     bool are_authorized_{false};
     bool need_restart_{false};
-    std::uint64_t current_query_id_{0};
+    std::uint64_t current_query_id_{2};
     std::uint64_t authentication_query_id_{0};
 
     std::map<std::uint64_t, std::function<void(td_api::object_ptr<td_api::Object>)>> handlers_;
@@ -106,5 +107,37 @@ class Bot
             return "unknown chat";
         }
         return it->second;
+    }
+
+    std::future<int64_t> get_my_saved_messages_chat_id()
+    {
+        std::lock_guard<std::mutex> guard(m_lock);
+        auto promise = std::make_shared<std::promise<int64_t>>();
+        auto future = promise->get_future();
+
+        // Passo 1: Ottieni l'utente corrente (tu stesso)
+        auto get_me = td_api::make_object<td_api::getMe>();
+
+        send_query(std::move(get_me),
+                   [this, promise](td_api::object_ptr<td_api::Object> obj)
+                   {
+                       if (obj->get_id() == td_api::user::ID)
+                       {
+                           auto user = td::move_tl_object_as<td_api::user>(obj);
+                           int64_t my_user_id = user->id_;
+
+                           // Passo 2: Costruisci il chat_id personale
+                           // Per TDLib, il chat con sé stessi è:  chat_id = user_id * 1'000'000'000'000 + user_id
+                           int64_t my_chat_id = static_cast<int64_t>(my_user_id) * 1'000'000'000'000LL + my_user_id;
+                           promise->set_value(my_chat_id);
+                       }
+                       else if (obj->get_id() == td_api::error::ID)
+                       {
+                           auto error = td::move_tl_object_as<td_api::error>(obj);
+                           promise->set_exception(std::make_exception_ptr(std::runtime_error("getMe failed: " + error->message_)));
+                       }
+                   });
+
+        return future;
     }
 };

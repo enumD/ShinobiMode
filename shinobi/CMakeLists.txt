@@ -28,7 +28,8 @@ find_package(OpenGL REQUIRED)
 find_package(nlohmann_json 3.0 REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(PkgConfig REQUIRED)
-find_package(Td 1.8.47 REQUIRED)
+#find_package(Td 1.8.47 REQUIRED)
+find_package(CURL REQUIRED)
 
 pkg_check_modules(PULSEAUDIO REQUIRED libpulse libpulse-simple)
 pkg_check_modules(GLIB REQUIRED glib-2.0)
@@ -64,7 +65,8 @@ add_executable(my_app
     src/ThreadMng.cpp
     src/Sentinel.cpp
     src/Modes.cpp
-    src/bot.cpp
+  #  src/bot.cpp
+    src/myBot.cpp
 
 )
 
@@ -78,8 +80,9 @@ target_link_libraries(my_app PRIVATE
     ${PULSEAUDIO_LIBRARIES}
     ${GLIB_LIBRARIES}
     ${VLC_LIBRARIES} 
-    Td::tdjson 
-    Td::TdStatic
+ #   Td::tdjson 
+  #  Td::TdStatic
+    CURL::libcurl
     # tdjson_static
     # ${TDLIB_LIBRARY}
     # ${TDLIB_JSON_LIB} 

@@ -1,6 +1,6 @@
 #pragma once
 #include "Modes.h"
-#include "bot.h"
+#include "myBot.h"
 
 class Sentinel : public Modes
 {
@@ -22,7 +22,7 @@ class Sentinel : public Modes
 
   private:
     void _thread_func() override;
-    std::shared_ptr<Bot> m_pBot;
+    std::shared_ptr<MyBot> m_pBot;
 
     void _signalToTelegram();
     void _autoMode();

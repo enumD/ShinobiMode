@@ -25,7 +25,7 @@ Bot::~Bot()
     }
 }
 
-Bot::Bot()
+Bot::Bot() : m_bRunning(false)
 {
     td::ClientManager::execute(td_api::make_object<td_api::setLogVerbosityLevel>(1));
     m_client_manager = std::make_unique<td::ClientManager>();
@@ -124,7 +124,7 @@ std::future<td_api::object_ptr<td_api::message>> Bot::send_message_async(int64_t
     auto future = promise->get_future();
 
     auto send_message = td_api::make_object<td_api::sendMessage>();
-    send_message->chat_id_ = chat_id;
+    send_message->chat_id_ = 7730902880; // TODO get chat id automatically
     auto message_content = td_api::make_object<td_api::inputMessageText>();
     message_content->text_ = td_api::make_object<td_api::formattedText>();
     message_content->text_->text_ = std::move(text);
@@ -258,8 +258,8 @@ void Bot::on_authorization_state_update()
                                   request->database_directory_ = "tdlib";
                                   request->use_message_database_ = true;
                                   request->use_secret_chats_ = true;
-                                  request->api_id_ = 94575;                                // Sostituisci con il tuo API ID
-                                  request->api_hash_ = "a3406de8d171bb422bb6ddf3bbd800e2"; // Sostituisci con il tuo API HASH
+                                  request->api_id_ = 1111; // Sostituisci con il tuo API ID
+                                  request->api_hash_ = ""; // Sostituisci con il tuo API HASH
                                   request->system_language_code_ = "en";
                                   request->device_model_ = "Desktop";
                                   request->application_version_ = "1.0";
@@ -308,6 +308,26 @@ void Bot::process_update(td_api::object_ptr<td_api::Object> update)
                                       text = static_cast<td_api::messageText &>(*update_new_message.message_->content_).text_->text_;
                                   }
                                   std::cout << "Receive message: [chat_id:" << chat_id << "] [from:" << sender_name << "] [" << text << "]" << std::endl;
+
+                                  if (update_new_message.message_->sender_id_->get_id() == td_api::messageSenderUser::ID)
+                                  {
+                                      auto sender = static_cast<td_api::messageSenderUser *>(update_new_message.message_->sender_id_.get());
+                                      if (sender->user_id_ != bot_user_id_)
+                                      {
+                                          // Questo è un messaggio dell'utente umano
+                                          std::cout << "Questo è un messaggio dell'utente umano: " << sender->user_id_ << std::endl;
+                                          send_query(td_api::make_object<td_api::getMe>(),
+                                                     [this](td_api::object_ptr<td_api::Object> obj)
+                                                     {
+                                                         if (obj->get_id() == td_api::user::ID)
+                                                         {
+                                                             auto me = td::move_tl_object_as<td_api::user>(obj);
+                                                             bot_user_id_ = me->id_;
+                                                             std::cout << "Bot user ID: " << bot_user_id_ << std::endl;
+                                                         }
+                                                     });
+                                      }
+                                  }
                               },
                               [](auto &update) { std::cout << "Received update not managed" << std::endl; }));
 }
@@ -319,7 +339,9 @@ void Bot::process_response(td::ClientManager::Response response)
     {
         return;
     }
-    std::cout << response.request_id << " " << to_string(response.object) << std::endl;
+
+    //  std::cout << response.request_id << " " << to_string(response.object) << std::endl;
+
     if (response.request_id == 0)
     {
         return process_update(std::move(response.object));
@@ -332,5 +354,6 @@ void Bot::process_response(td::ClientManager::Response response)
     {
         it->second(std::move(response.object));
         handlers_.erase(it);
+        std::cout << "Beccato un handler con: " << response.request_id << std::endl;
     }
 }

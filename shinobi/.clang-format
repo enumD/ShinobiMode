@@ -6,3 +6,4 @@ BinPackArguments: false           # Non "impacchettare" gli argomenti
 AllowAllArgumentsOnNextLine: false # Non spostare TUTTI gli argomenti a capo
 BreakBeforeBinaryOperators: None  # Evita a capo prima di operatori binari
 ColumnLimit: 250                  # Aumenta il limite di colonne (default: 80)
+MaxEmptyLinesToKeep: 2

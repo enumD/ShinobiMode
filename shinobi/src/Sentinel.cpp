@@ -1,6 +1,6 @@
 #include "Sentinel.h"
 
-Sentinel::Sentinel() : m_pBot(Bot::getInstance()) { m_myName = "Sentinel"; }
+Sentinel::Sentinel() : m_pBot(MyBot::getInstance()) { m_myName = "Sentinel"; }
 
 Sentinel::~Sentinel() {}
 
@@ -21,7 +21,7 @@ void Sentinel::stop()
 
     if (m_pBot && m_pBot->isRunning())
     {
-        m_pBot->shutdown();
+        m_pBot->stop();
     }
 }
 
@@ -82,20 +82,18 @@ void Sentinel::_thread_func()
 
 void Sentinel::_signalToTelegram()
 {
-    std::future<td_api::object_ptr<td_api::message>> future = m_pBot->send_message_async(chat_id, "Test timeout");
+    // auto future = m_pBot->SendMessageAsync("Figlio di puttana");
 
-    // Aspetta con timeout (es. 3 secondi)
-    if (future.wait_for(std::chrono::seconds(3)) == std::future_status::timeout)
-    {
-        std::cerr << "Timeout! La risposta non è arrivata in tempo" << std::endl;
-        // Qui puoi decidere se ritentare o annullare
-    }
-    else
-    {
-        // Risposta arrivata in tempo
-        td_api::object_ptr<td_api::message> msg = future.get();
-        std::cout << "Messaggio inviato con ID: " << msg->id_ << std::endl;
-    }
+    // if (future.wait_for(std::chrono::seconds(20)) == std::future_status::timeout)
+    // {
+    //     std::cerr << "Timeout! La risposta non è arrivata in tempo" << std::endl;
+    // }
+    // else
+    // {
+    //     // Risposta arrivata in tempo
+    //     auto respo = future.get();
+    //     std::cout << "Risposta arrivata con msg ID: " << respo << std::endl;
+    // }
 }
 
 void Sentinel::_autoMode() {}
