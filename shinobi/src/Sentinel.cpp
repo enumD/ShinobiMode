@@ -34,7 +34,6 @@ void Sentinel::_thread_func()
 
         try
         {
-            // Get sensor data (consider adding a mutex if shared)
             const auto sensorData = m_pSensorMng->getCurrentData();
 
             // Check if any sensor is active (status != 0)
@@ -102,6 +101,7 @@ void Sentinel::_thread_func()
         catch (const std::exception &e)
         {
             Logger::log(e.what());
+
             std::cerr << e.what() << '\n';
         }
 

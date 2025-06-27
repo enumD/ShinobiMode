@@ -2,10 +2,7 @@
 #include <filesystem>
 #include <thread> // Aggiunto per std::this_thread.sleep
 
-CameraStream::CameraStream() : m_textureID(0), m_isRunning(false), m_currentDev_id(0)
-{
-    refreshSystemDevice();
-}
+CameraStream::CameraStream() : m_textureID(0), m_isRunning(false), m_currentDev_id(0) { refreshSystemDevice(); }
 
 CameraStream::~CameraStream()
 {
@@ -18,11 +15,8 @@ CameraStream::~CameraStream()
 }
 
 /// @brief Return current device id running
-/// @return 
-int CameraStream::currentDevice()
-{
-    return m_currentDev_id;
-}
+/// @return
+int CameraStream::currentDevice() { return m_currentDev_id; }
 
 
 /// @brief Refresh the list of system device attached:/dev/video*
@@ -41,8 +35,8 @@ void CameraStream::refreshSystemDevice()
 
 
 /// @brief Start camera by id
-/// @param dev_id 
-/// @return 
+/// @param dev_id
+/// @return
 bool CameraStream::start(int dev_id)
 {
     stop(); // Ferma qualsiasi istanza precedente
@@ -95,6 +89,7 @@ void CameraStream::updateFrame()
         return;
 
     m_cap >> m_frame;
+
     if (!m_frame.empty())
     {
         cv::cvtColor(m_frame, m_frame, cv::COLOR_BGR2RGB);

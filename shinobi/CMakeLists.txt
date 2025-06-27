@@ -98,6 +98,11 @@ target_include_directories(my_app PRIVATE
     ${PULSEAUDIO_INCLUDE_DIRS}                          # Pulse Audio
     ${GLIB_INCLUDE_DIRS}                                # GLib
     ${VLC_INCLUDE_DIRS} 
+    ${CMAKE_CURRENT_SOURCE_DIR}/gui
+    ${CMAKE_CURRENT_SOURCE_DIR}/interface
+    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    ${CMAKE_CURRENT_SOURCE_DIR}/utils
+    
   #  ${TDLIB_INCLUDE_DIR}
 )
 

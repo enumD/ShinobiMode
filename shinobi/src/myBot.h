@@ -51,7 +51,7 @@ class MyBot
 
     void thread_func();
     static size_t writeCallback(char *ptr, size_t size, size_t nmemb, void *userdata);
-    std::string sendMessageInternal(const std::string &chat_id, const std::string &text);
+    bool sendMessageInternal(const std::string &chat_id, const std::string &text);
     std::string getUpdatesInternal();
     void saveLastUpdateToFile(const std::string &filename);
     void pollingLoop();

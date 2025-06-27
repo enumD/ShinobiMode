@@ -9,7 +9,11 @@
                 "/usr/local/include/td",
                 "/usr/include/opencv4",
                 "/usr/include/pulse",
-                "/usr/include/vlc"
+                "/usr/include/vlc",
+                "${workspaceFolder}/gui",
+                "${workspaceFolder}/interface",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/utils"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/g++",

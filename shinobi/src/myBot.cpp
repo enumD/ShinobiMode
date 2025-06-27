@@ -171,8 +171,36 @@ size_t MyBot::writeCallback(char *ptr, size_t size, size_t nmemb, void *userdata
 }
 
 
-std::string MyBot::sendMessageInternal(const std::string &chat_id, const std::string &text)
+std::future<std::string> MyBot::SendMessageAsync(const std::string &text)
 {
+    std::promise<std::string> promise;
+
+    auto future = promise.get_future();
+
+    {
+        std::lock_guard<std::mutex> guard(m_lock);
+
+        waiting_replies_.erase(m_chatId); // reset
+    }
+
+    if (sendMessageInternal(m_chatId, text))
+    {
+        std::lock_guard<std::mutex> guard(m_lock);
+        waiting_replies_[m_chatId] = std::move(promise);
+        // waiting_replies_[m_chatId] = std::move(*promise);
+    }
+    else
+    {
+        promise.set_value("");
+    }
+
+    return future;
+}
+
+
+bool MyBot::sendMessageInternal(const std::string &chat_id, const std::string &text)
+{
+    bool bRes = false;
     std::string response;
     CURL *curl = curl_easy_init();
     if (curl)
@@ -203,19 +231,23 @@ std::string MyBot::sendMessageInternal(const std::string &chat_id, const std::st
         curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
         CURLcode res = curl_easy_perform(curl);
-        if (res != CURLE_OK)
+
+        // DEBUG
+        if (res == CURLE_OK)
         {
-            std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
+            std::cerr << "Response: " << response << std::endl;
+            bRes = true;
         }
         else
         {
-            std::cerr << "Response: " << response << std::endl;
+            std::cerr << "curl_easy_perform() failed: " << curl_easy_strerror(res) << std::endl;
         }
+        // END DEBUG
 
         curl_slist_free_all(headers);
         curl_easy_cleanup(curl);
     }
-    return response;
+    return bRes;
 }
 
 
@@ -271,26 +303,6 @@ void MyBot::saveLastUpdateToFile(const std::string &response)
                       << " for writing." << std::endl;
         }
     }
-}
-
-
-std::future<std::string> MyBot::SendMessageAsync(const std::string &text)
-{
-    {
-        std::lock_guard<std::mutex> guard(m_lock);
-        waiting_replies_.erase(m_chatId); // reset
-    }
-
-    auto promise = std::make_shared<std::promise<std::string>>();
-    auto future = promise->get_future();
-
-    {
-        std::lock_guard<std::mutex> guard(m_lock);
-        waiting_replies_[m_chatId] = std::move(*promise);
-    }
-
-    sendMessageInternal(m_chatId, text);
-    return future;
 }
 
 

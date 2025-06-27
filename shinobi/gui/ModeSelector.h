@@ -1,7 +1,8 @@
 #pragma once
 
 #include "../src/ThreadMng.h"
-#include "../utils/myGlobals.h"
+//#include "../utils/myGlobals.h"
+#include "myGlobals.h"
 #include <functional>
 #include <imgui.h>
 #include <string>
