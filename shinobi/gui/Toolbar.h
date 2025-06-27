@@ -1,4 +1,6 @@
-#pragma once
+#ifndef TOOLBAR_DARIO_H
+#define TOOLBAR_DARIO_H
+
 #include "imgui.h"
 #include <functional>
 #include <string>
@@ -29,3 +31,5 @@ class Toolbar
   private:
     std::vector<Icon> icons;
 };
+
+#endif

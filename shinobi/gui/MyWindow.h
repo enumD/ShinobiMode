@@ -1,4 +1,6 @@
-#pragma once
+#ifndef MY_WINDOW_H
+#define MY_WINDOW_H
+
 #include "CameraWindow.h"
 #include "ModeSelector.h"
 #include "SettingWindow.h"
@@ -35,3 +37,5 @@ class MyWindow
     void renderMenu();
     void renderContent();
 };
+
+#endif

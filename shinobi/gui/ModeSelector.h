@@ -1,4 +1,5 @@
-#pragma once
+#ifndef MODE_SELECTOR_H
+#define MODE_SELECTOR_H
 
 #include "../src/ThreadMng.h"
 //#include "../utils/myGlobals.h"
@@ -28,3 +29,5 @@ class ModeSelector
 
     ThreadMng m_threadMng;
 };
+
+#endif

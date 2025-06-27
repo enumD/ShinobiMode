@@ -1,14 +1,15 @@
-#pragma once
+#ifndef CAMERA_STREAM_H
+#define CAMERA_STREAM_H
 
-#include <opencv2/opencv.hpp>
-#include <GL/gl.h>
-#include <vector>
-#include <string>
 #include "imgui.h"
+#include <GL/gl.h>
+#include <opencv2/opencv.hpp>
+#include <string>
+#include <vector>
 
 class CameraStream
 {
-public:
+  public:
     CameraStream();
     ~CameraStream();
 
@@ -21,7 +22,7 @@ public:
     void updateFrame();
 
     int currentDevice();
-    
+
     float getAspectRatio() const
     {
         if (m_frame.empty())
@@ -35,7 +36,7 @@ public:
 
     const std::vector<std::string> &availableDevices() const { return m_devices; }
 
-private:
+  private:
     cv::VideoCapture m_cap;
     cv::Mat m_frame;
     GLuint m_textureID = 0;
@@ -45,3 +46,5 @@ private:
 
     void convertFrameToTexture();
 };
+
+#endif
